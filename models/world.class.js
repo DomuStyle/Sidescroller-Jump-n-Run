@@ -12,6 +12,10 @@ class World {
         new Clouds(),
     ];
 
+    backgroundObjects = [
+        new BackgroundObject('./img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 0, 270),
+    ];
+
     canvas;
     ctx;
 
@@ -24,18 +28,37 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach(enemy => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
-        });
+        this.addToMap(this.character);
 
-        this.clouds.forEach(cloud => {
-            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
-        });
+        this.addObjectsToMap(this.enemies);
+        // this.enemies.forEach(enemy => {
+        //     this.addToMap(enemy);
+        // });
+
+        this.addObjectsToMap(this.clouds);
+        // this.clouds.forEach(cloud => {
+        //     this.addToMap(cloud);
+        // });
+
+        this.addObjectsToMap(this.backgroundObjects);
+        // this.backgroundObjects.forEach(object => {
+        //     this.addToMap(object);
+        // });
 
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
         });
     }
+    
+    addObjectsToMap(objects){
+        objects.forEach(o => {
+            this.addToMap(o);
+        });
+    }
+
+    addToMap(mo) { 
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    }
 }
+
