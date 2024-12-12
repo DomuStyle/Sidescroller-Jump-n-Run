@@ -17,10 +17,10 @@ class MovableObject {
 
 
 
-    /**
-     * 
-     * @param {Array} array - ['img/image1.png', 'img/image2.png', ....]
-     */
+    // /**
+    //  * 
+    //  * @param {Array} array - ['img/image1.png', 'img/image2.png', ....]
+    //  */
 
     loadImages(array) {
         array.forEach((path)=> {
