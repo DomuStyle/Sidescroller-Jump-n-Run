@@ -2,26 +2,16 @@ class World {
 
     character = new Character();
 
-    enemies = [
-    new Chicken(),
-    new Chicken(),
-    new Chicken(),
-    ]
+    enemies = level1.enemies;
 
-    clouds =  [
-        new Clouds(),
-    ];
+    clouds = level1.clouds;
 
-    backgroundObjects = [
-        new BackgroundObject('./img_pollo_locco/img/5_background/layers/air.png', 0),
-        new BackgroundObject('./img_pollo_locco/img/5_background/layers/3_third_layer/1.png', 0),
-        new BackgroundObject('./img_pollo_locco/img/5_background/layers/2_second_layer/1.png', 0),
-        new BackgroundObject('./img_pollo_locco/img/5_background/layers/1_first_layer/1.png', 0),   
-    ];
+    backgroundObjects = level1.backgroundObjects;
 
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -33,10 +23,14 @@ class World {
 
     setWorld() {
         this.character.world = this; 
+         
     }
 
+    // defines how the content gets drawn onto the canvas. ! respect order !
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.backgroundObjects);
 
@@ -46,6 +40,7 @@ class World {
 
         this.addObjectsToMap(this.clouds);
 
+        this.ctx.translate( - this.camera_x, 0);
         
 
         let self = this;
@@ -61,7 +56,26 @@ class World {
     }
 
     addToMap(mo) { 
+
+        // if (mo.otherDirection) {
+        //         this.flipImage(mo);
+        //     }
+        //     mo.draw(this.ctx);
+
+        // if (mo.otherDirection) {
+        //         this.flipImageBack(mo);
+        //     }
+        if (mo.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.x = mo.x * -1;
+        }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        if (mo.otherDirection) {
+            mo.x = mo.x * -1;
+            this.ctx.restore();
+        }
     }
 }
 

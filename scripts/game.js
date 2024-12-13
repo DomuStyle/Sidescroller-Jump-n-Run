@@ -13,23 +13,23 @@ function init() {
 
 window.addEventListener('keydown', (event) => {
 
-    if(event.keyCode == 37) {
+    if(event.key == "ArrowLeft") {
         keyboard.LEFT = true;
     }
 
-    if(event.keyCode == 38) {
+    if(event.key == "ArrowUp") {
         keyboard.UP = true;
     }
 
-    if(event.keyCode == 40) {
+    if(event.key == "ArrowDown") {
         keyboard.DOWN = true;
     }
 
-    if(event.keyCode == 39) {
+    if(event.key == "ArrowRight") {
         keyboard.RIGHT = true;
     }
 
-    if(event.keyCode == 32) {
+    if(event.key == "Space") {
         keyboard.SPACE = true;
     }
 console.log(event);
@@ -38,23 +38,23 @@ console.log(event);
 
 window.addEventListener('keyup', (event) => {
 
-    if(event.keyCode == 37) {
+    if(event.key == "ArrowLeft") {
         keyboard.LEFT = false;
     }
 
-    if(event.keyCode == 38) {
+    if(event.key == "ArrowUp") {
         keyboard.UP = false;
     }
 
-    if(event.keyCode == 40) {
+    if(event.key == "ArrowDown") {
         keyboard.DOWN = false;
     }
 
-    if(event.keyCode == 39) {
+    if(event.key == "ArrowRight") {
         keyboard.RIGHT = false;
     }
 
-    if(event.keyCode == 32) {
+    if(event.key == "Space") {
         keyboard.SPACE = false;
     }
 console.log(event);
