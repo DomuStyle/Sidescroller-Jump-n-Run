@@ -27,16 +27,18 @@ class Character extends MovableObject {
         
         setInterval( ()=> {
             // walk right animation
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
             }
-            // walk left animation
-            if (this.world.keyboard.LEFT) {
+            console.log(this.world.level.level_end_x);
+            
+            // walk left animation && limit levelStartBorder on the left side. &&
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 50;
         }, 1000 / 60);
 
         //walk animation
