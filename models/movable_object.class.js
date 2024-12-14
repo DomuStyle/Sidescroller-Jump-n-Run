@@ -1,20 +1,33 @@
 class MovableObject {
     x = 120;
-    y = 200;
     img;
-    height = 150;
+    height = 250;
     width = 100;
     speed = 0.15;
     imageCache = {};
     currentImage = 0;
     otherDirection = false;
-    
+    speedY = 0; // defines the falling speed of objects at falling start
+    acceleration = 1; // defines the gravity acceleraion of objects
+
+    applyGravity() {
+        setInterval( ()=> {
+            // 180 creates a floor to fall on at y = 180;
+            if (this.isAboveGround()) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            } 
+        }, 1000 / 25);
+    }
+
+    isAboveGround() {
+        return this.y < 210;
+    }
+
     loadImg(path) {
         this.img = new Image();
         this.img.src = path;
     }
-
-
 
     // /**
     //  * 
