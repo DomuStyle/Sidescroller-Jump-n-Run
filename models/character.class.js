@@ -14,7 +14,9 @@ class Character extends MovableObject {
     ];
 
     world;
-
+    // define & add new sounds for character here
+    walking_sound = new Audio('assets/audio/character/walking-on-gravel_by_sounddesignforyou.mp3');
+    
     constructor() {
         super().loadImg('./img_pollo_locco/img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -26,10 +28,17 @@ class Character extends MovableObject {
 
         
         setInterval( ()=> {
+            this.walking_sound.pause();
+            // set playbackspeed of adio to match content behavior & movement
+            this.walking_sound.playbackRate = 3;
+            // set volume of walking_sound
+            this.walking_sound.volume = 0.2; 
             // walk right animation
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
+                this.walking_sound.play();
+                 // set speed of audio to match content behavior
             }
             console.log(this.world.level.level_end_x);
             
@@ -37,6 +46,8 @@ class Character extends MovableObject {
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
+                this.walking_sound.play();
+                // this.walking_sound.playbackRate = 2.75;
             }
             this.world.camera_x = -this.x + 50;
         }, 1000 / 60);
@@ -44,10 +55,7 @@ class Character extends MovableObject {
         //walk animation
         setInterval( ()=> {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                let i = this.currentImage % this.IMAGES_WALKING.length; // modulu operator, creates i for each item and starts over again after reaching last item
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.imageSequence(this.IMAGES_WALKING);
         }
         }, 50);
         

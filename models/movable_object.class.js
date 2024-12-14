@@ -21,6 +21,13 @@ class MovableObject {
     //  * @param {Array} array - ['img/image1.png', 'img/image2.png', ....]
     //  */
 
+    imageSequence(images) {
+            let i = this.currentImage % this.IMAGES_WALKING.length; // modulu operator, creates i for each item and starts over again after reaching last item
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+    }
+
     loadImages(array) {
         array.forEach((path)=> {
             let img = new Image();

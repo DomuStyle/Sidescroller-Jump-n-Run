@@ -22,10 +22,8 @@ class Chicken extends MovableObject {
         this.moveLeft();
 
         setInterval( ()=> {
-            let i = this.currentImage % this.IMAGES_WALKING.length; // modulu operator, creates i for each item and starts over again after reaching last item
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            // imageSequence i handeled in parent 
+            this.imageSequence(this.IMAGES_WALKING);
         }, 200);
         
     }
