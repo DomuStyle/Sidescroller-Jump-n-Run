@@ -41,35 +41,29 @@ class Character extends MovableObject {
         setInterval( ()=> {
             this.walking_sound.pause();
             // set playbackspeed of adio to match content behavior & movement
-            this.walking_sound.playbackRate = 3;
+            this.walking_sound.playbackRate = 1.75;
             // set volume of walking_sound
             this.walking_sound.volume = 0.2; 
             // walk right animation
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.x += this.speed;
+                this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
-                 // set speed of audio to match content behavior
             }
             // console.log(this.world.level.level_end_x);
             
             // walk left animation && limit levelStartBorder left side. &&
             if (this.world.keyboard.LEFT && this.x > 0) {
-                this.x -= this.speed;
+                this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
-                // this.walking_sound.playbackRate = 2.75;
             }
-            
             
             // handling jump action
             console.log(this.world.keyboard.SPACE);
             // console.log(isAboveGround());
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                // this.keyboard.SPACE = false;
-                
-                
             }
             
             this.world.camera_x = -this.x + 50;
@@ -87,7 +81,7 @@ class Character extends MovableObject {
                 this.imageSequence(this.IMAGES_WALKING);
             }
         }
-        }, 50);
+        }, 1000 / 9); 
         
     }
 }
