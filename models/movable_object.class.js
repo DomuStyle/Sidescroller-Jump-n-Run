@@ -8,12 +8,11 @@ class MovableObject {
     currentImage = 0;
     otherDirection = false;
     speedY = 0; // defines the falling speed of objects at falling start
-    acceleration = 1; // defines the gravity acceleraion of objects
+    acceleration = 2.5; // defines the gravity acceleraion of objects
 
     applyGravity() {
         setInterval( ()=> {
-            // 180 creates a floor to fall on at y = 180;
-            if (this.isAboveGround()) {
+            if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             } 
@@ -21,14 +20,14 @@ class MovableObject {
     }
 
     isAboveGround() {
-        return this.y < 210;
+        return this.y < 205;
     }
 
     loadImg(path) {
         this.img = new Image();
         this.img.src = path;
     }
-
+ 
     // /**
     //  * 
     //  * @param {Array} array - ['img/image1.png', 'img/image2.png', ....]
@@ -51,13 +50,17 @@ class MovableObject {
     }
 
     moveRight() {
-        console.log('moving right');  
+        // console.log('moving right');  
     }
 
     moveLeft() {
         setInterval( ()=> {
         this.x -= this.speed;
         }, 1000 / 60);
-        console.log('moving left');
+        // console.log('moving left');
+    }
+
+    jump(){
+        this.speedY = 20; 
     }
 }
