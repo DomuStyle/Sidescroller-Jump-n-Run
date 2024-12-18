@@ -1,11 +1,5 @@
-class MovableObject {
-    x = 120;
-    img;
-    height = 250;
-    width = 100;
+class MovableObject extends DrawableObject{  
     speed = 0.15;
-    imageCache = {};
-    currentImage = 0;
     otherDirection = false;
     speedY = 0; // defines the falling speed of objects at falling start
     acceleration = 2.5; // defines the gravity acceleraion of objects
@@ -24,12 +18,7 @@ class MovableObject {
     isAboveGround() {
         return this.y < 205;
     }
-
-    loadImg(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
- 
+   
     // /**
     //  * 
     //  * @param {Array} array - ['img/image1.png', 'img/image2.png', ....]
@@ -40,19 +29,6 @@ class MovableObject {
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-    }
-
-    loadImages(array) {
-        array.forEach((path)=> {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-        
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     drawBorder(ctx) {
@@ -74,8 +50,7 @@ class MovableObject {
             this.x < mo.x && 
             this.y < mo.y + mo.height;         
     }
-    
-    
+       
     // set enemy damage
     hit() {
         this.healthPoints -= 5;
@@ -84,8 +59,7 @@ class MovableObject {
         } 
         else {
             this.lastHit = new Date().getTime();
-        }
-        
+        } 
     }
 
     isHurt() {
