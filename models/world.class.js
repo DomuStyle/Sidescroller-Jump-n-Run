@@ -19,6 +19,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     setWorld() {
@@ -26,6 +27,17 @@ class World {
          
     }
 
+    checkCollisions() {
+        setInterval( ()=> {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy) ) {
+                    this.character.hit();
+                    // console.log('collision with Character, HP', this.character.healthPoints);
+                }
+            });
+        }, 1000 / 5); // (1 Second) = 1000 / 5 = (frames per Second)
+    }
+    
     // defines how the content gets drawn onto the canvas. ! respect order !
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
