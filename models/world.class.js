@@ -12,7 +12,9 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+
     statusBar = new StatusBar();
+    throwableObjects = [new ThrowableObject()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -21,25 +23,38 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this; 
-         
+    }
+
+    run() {
+        setInterval( ()=> {
+            // check collisions
+            this.checkCollisions();
+            this.checkThrowObject();
+        }, 1000 / 5); // (1 Second) = 1000 / 5 = (frames per Second)
     }
 
     checkCollisions() {
-        setInterval( ()=> {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy) ) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.healthPoints);
-                    // console.log('collision with Character, HP', this.character.healthPoints);
-                }
-            });
-        }, 1000 / 5); // (1 Second) = 1000 / 5 = (frames per Second)
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) ) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.healthPoints);
+                // console.log('collision with Character, HP', this.character.healthPoints);
+            }
+        });
     }
-    
+
+    checkThrowObject() {
+        if (this.keyboard.THROW) {
+            let bottle = new ThrowableObject(this.character.x, this.character.y);
+            this.throwableObjects.push(bottle);
+        }
+    }
+
     // defines how the content gets drawn onto the canvas. ! respect right order !
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -52,6 +67,7 @@ class World {
 
         this.addObjectsToMap(this.level.clouds);
 
+        this.addObjectsToMap(this.throwableObjects);
         
         this.ctx.translate( -this.camera_x, 0); //
         // ------  space for fixed objects ----- //
