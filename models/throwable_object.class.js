@@ -5,20 +5,17 @@ class ThrowableObject extends MovableObject{
 
     ];
 
-    constructor () {
+    constructor (x , y) {
         super().loadImg('./img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png');
         this.IMAGES_SALSA_BOTTLE;
-        this.x = 100;
-        this.y = 100;
-        this.height = 75;
-        this.width = 75;
-
-        this.throw(100, 200);
-    }
-
-    throw(x, y) {
         this.x = x;
         this.y = y;
+        this.height = 75;
+        this.width = 75;
+        this.throw();
+    }
+
+    throw() {
         this.speedY = 30;
         this.applyGravity();
         setInterval( ()=> {
