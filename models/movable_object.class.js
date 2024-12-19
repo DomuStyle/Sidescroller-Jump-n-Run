@@ -19,35 +19,11 @@ class MovableObject extends DrawableObject{
         return this.y < 205;
     }
    
-    // /**
-    //  * 
-    //  * @param {Array} array - ['img/image1.png', 'img/image2.png', ....]
-    //  */
-
-    imageSequence(images) {
-            let i = this.currentImage % images.length; // modulu operator, creates i for each item and starts over again after reaching last item
-            let path = images[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-    }
-
-    drawBorder(ctx) {
-        // instanceOf adds drawBorder only to Char.& Chick.
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-        
-    }
-
     // charcter.isColiding chicken
     isColliding (mo) {
-        return  this.x + this.width > mo.x &&
+        return  this.x + this.width > mo.x && // collison from left and right
             this.y + this.height > mo.y &&
-            this.x < mo.x && 
+            this.x < mo.x + mo.width && 
             this.y < mo.y + mo.height;         
     }
        
@@ -74,6 +50,13 @@ class MovableObject extends DrawableObject{
         return this.healthPoints == 0;   
     }
 
+    imageSequence(images) {
+        let i = this.currentImage % images.length; // modulu operator, creates i for each item and starts over again after reaching last item
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+    
     moveRight() {
         this.x += this.speed;
         // console.log('moving right');  

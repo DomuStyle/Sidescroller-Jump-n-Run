@@ -12,6 +12,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,13 +39,15 @@ class World {
         }, 1000 / 5); // (1 Second) = 1000 / 5 = (frames per Second)
     }
     
-    // defines how the content gets drawn onto the canvas. ! respect order !
+    // defines how the content gets drawn onto the canvas. ! respect right order !
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
+
+        this.addToMap(this.statusBar);
 
         this.addToMap(this.character);
 
