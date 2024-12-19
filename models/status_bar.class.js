@@ -13,13 +13,14 @@ class StatusBar extends DrawableObject{
         super();
         this.loadImages(this.IMAGES_HP); // preload images
         this.setPercentage(100); // creates the IMAGES[path] for later use in resolveImageIndex
-        // this.loadImg('./img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png');
-        this.x = 100;
-        this.y = 100;
-    }   
+        this.x = 40;
+        this.y = 25;
+        this.width = 200;
+        this.height = 60;
+     }   
 
     percentage = 100;
-
+  
     // set percentage(50)
     setPercentage(percentage) {
         this.percentage = percentage;

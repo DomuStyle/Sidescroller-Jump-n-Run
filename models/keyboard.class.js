@@ -1,9 +1,18 @@
 class Keyboard {
-    LEFT = false;
-    RIGHT = false;
+
+    // movement keys
     UP = false;
+    
+    LEFT = false;
+    
     DOWN = false;
+    
+    RIGHT = false;
+    
     SPACE = false;
+
+    // action keys
+    THROW = false;
 
     constructor() {
         
