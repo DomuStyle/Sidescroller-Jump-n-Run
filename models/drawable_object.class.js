@@ -17,7 +17,13 @@ class DrawableObject {
     }
  
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        try { // try´s to complete this line and add's failure context if line fails to execute
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        } catch(error){ 
+            console.warn('Error loading image', error);
+            console.log('this image could not be loaded', this.img.src);
+        }
+        
     }
 
     /**

@@ -37,7 +37,7 @@ class World {
             // check collisions
             this.checkCollisions();
             this.checkThrowObject();
-        }, 1000 / 5); // (1 Second) = 1000 / 5 = (frames per Second)
+        }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
     }
 
     checkCollisions() {

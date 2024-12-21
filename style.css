@@ -9,16 +9,50 @@ body {
     align-items: center;
     font-family: zabras;
     font-style: italic;
-    font-size: 36px;
+    font-size: 56px;
     color: goldenrod;
     filter: drop-shadow(2px 5px 2px black);
     background-image: url('./assets//img/desert1_1280.jpg');
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
+    letter-spacing: 4px;
+    height: 100vh;
+}
+
+h1 {
+    padding-bottom: 64px;
 }
 
 canvas {
     background-color: black;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 68%;
+    width: 60%;
+}
+
+nav img {
+    height: 64px;
+    
+}
+
+nav img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.frame {
+    /* background-image: url('./assets/img/El_pollo_frame.png'); */
+    position: absolute;
+    top: 225px;
+    z-index: 2;
+    height: 660px;
+    filter: drop-shadow(2px 5px 2px black);
+    width: 882px;
 }
