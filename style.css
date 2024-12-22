@@ -47,6 +47,19 @@ nav img:hover {
     transform: scale(1.2);
 }
 
+.nav_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nav_item_title {
+    margin: 0;
+    font-size: 32px;
+    padding-top: 8px;
+}
+
 .frame {
     /* background-image: url('./assets/img/El_pollo_frame.png'); */
     position: absolute;
