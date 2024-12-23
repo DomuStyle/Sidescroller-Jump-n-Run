@@ -3,6 +3,15 @@ class Boss1 extends MovableObject {
     width = 300;
     y = 150;
 
+
+    // offset for more precise collision detection
+    offset = {
+        x: 30, 
+        y: 60,
+        width: 40,
+        height: 90,
+    }
+
     IMAGES_WALKING = [
         './img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
         './img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -13,7 +22,7 @@ class Boss1 extends MovableObject {
     constructor() {
         super().loadImg(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 1700;
+        this.x = 700;
         this.animate();
     }
 

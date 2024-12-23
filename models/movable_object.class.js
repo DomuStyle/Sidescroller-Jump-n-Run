@@ -54,7 +54,7 @@ class MovableObject extends DrawableObject{
         timePassed = timePassed / 1000; // difference in (sec)
         // console.log(timePassed);
         
-        return timePassed < 1; // returns "true" if timePassed is < 5
+        return timePassed < 5; // returns "true" if timePassed is < 5
     }
     
     isDead() {
