@@ -2,6 +2,15 @@ class Chicken extends MovableObject {
     height = 60;
     width = 60;
     y = 365;
+
+    // offset for more precise collision detection
+    offset = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+    }
+
     IMAGES_WALKING = [
         './img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         './img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',

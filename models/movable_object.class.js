@@ -24,11 +24,18 @@ class MovableObject extends DrawableObject{
     }
    
     // charcter.isColiding chicken
+    // isColliding (mo) {
+    //     return  this.x + this.width > mo.x && // collison from left and right
+    //         this.y + this.height > mo.y &&
+    //         this.x < mo.x + mo.width && 
+    //         this.y < mo.y + mo.height;         
+    // }
+
     isColliding (mo) {
-        return  this.x + this.width > mo.x && // collison from left and right
-            this.y + this.height > mo.y &&
-            this.x < mo.x + mo.width && 
-            this.y < mo.y + mo.height;         
+        return this.x + this.offset.x + this.width - this.offset.width > mo.x + mo.offset.x &&
+            this.y + this.offset.y + this.height - this.offset.height > mo.y + mo.offset.y &&
+            this.x + this.offset.x < mo.x+ mo.offset.x  + mo.width - mo.offset.width &&
+            this.y + this.offset.y < mo.y + mo.offset.y + mo.height - mo.offset.height;
     }
        
     // set enemy damage
@@ -73,6 +80,6 @@ class MovableObject extends DrawableObject{
 
     // set jump height
     jump(){
-        this.speedY = 25; 
+        this.speedY = 30; 
     }
 }

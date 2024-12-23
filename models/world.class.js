@@ -14,6 +14,8 @@ class World {
     camera_x = 0;
 
     statusBar = new StatusBar();
+    statusbarCoins = new StatusBarCoins();
+
     throwableObjects = [];
     
     constructor(canvas, keyboard) {
@@ -24,8 +26,6 @@ class World {
         this.setWorld();
         this.checkCollisions();
         this.run();
-        
-        
     }
 
     setWorld() {
@@ -74,6 +74,8 @@ class World {
         this.ctx.translate( -this.camera_x, 0); //
         // ------  space for fixed objects ----- //
         this.addToMap(this.statusBar);
+        this.addToMap(this.statusbarCoins);
+
         this.ctx.translate(this.camera_x, 0); //
 
         this.addObjectsToMap(this.level.enemies);
@@ -99,8 +101,10 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // draw recatngle around Movable Objects
+
+        // draw recatngle around Movable Objects for collisiondetection
         mo.drawBorder(this.ctx);
+            mo.drawOffsetBorder(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageback(mo);

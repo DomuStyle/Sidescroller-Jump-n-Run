@@ -4,6 +4,13 @@ class Character extends MovableObject {
     y = 110;
     speed = 2.5;
     
+    // offset for more precise collision detection
+    offset = {
+        x: 18,
+        y: 95,
+        width: 35,
+        height: 100,
+    }
 
     IMAGES_WALKING = [
             './img_pollo_locco/img/2_character_pepe/2_walk/W-21.png',

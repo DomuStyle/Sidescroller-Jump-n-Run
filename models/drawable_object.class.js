@@ -7,6 +7,14 @@ class DrawableObject {
     height = 250;
     width = 100;
     
+    // offset for more precise collision detection
+    offset = {
+        x: 0,
+        y: 0,
+        width: 20,
+        height: 0,
+    }
+
     constructor() {
 
     }
@@ -40,13 +48,25 @@ class DrawableObject {
     }   
 
     drawBorder(ctx) {
-        // instanceOf adds drawBorder only to Char.& Chick.
         if (this instanceof Character || this instanceof Chicken) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
-        }  
+        }
+    }
+
+    drawOffsetBorder(ctx) {
+        if (this instanceof Character || this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x + this.offset.x, 
+                this.y + this.offset.y, 
+                this.width - this.offset.width, 
+                this.height - this.offset.height);
+            ctx.stroke();
+        }
     }
 }
