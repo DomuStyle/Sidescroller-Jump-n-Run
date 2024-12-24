@@ -4,7 +4,7 @@ class Character extends MovableObject {
     y = 110;
     speed = 2.5;
     
-    // offset for more precise collision detection
+    // define offset for more precise collision detection
     offset = {
         x: 18,
         y: 95,
@@ -12,6 +12,7 @@ class Character extends MovableObject {
         height: 100,
     }
 
+    
     IMAGES_WALKING = [
             './img_pollo_locco/img/2_character_pepe/2_walk/W-21.png',
             './img_pollo_locco/img/2_character_pepe/2_walk/W-22.png',
@@ -33,18 +34,18 @@ class Character extends MovableObject {
         './img_pollo_locco/img/2_character_pepe/3_jump/J-39.png'
     ];
 
-    // IMAGES_IDLE = [
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-2.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-3.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-4.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-5.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-6.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-7.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-8.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-9.png',
-    //     './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-10.png'
-    // ];
+    IMAGES_IDLE = [
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-2.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-3.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-4.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-5.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-6.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-7.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-8.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-9.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-10.png'
+    ];
 
     IMAGES_DEAD = [
         './img_pollo_locco/img/2_character_pepe/5_dead/D-51.png',
@@ -66,12 +67,24 @@ class Character extends MovableObject {
     // define & add new sounds for character here
     walking_sound = new Audio('assets/audio/character/walking-on-gravel_by_sounddesignforyou.mp3');
     
+    damage_sound = [
+        new Audio('assets/audio/character/ouch1.mp3'),
+        new Audio('assets/audio/character/ouch2.mp3'),
+        new Audio('assets/audio/character/ouch3.mp3')
+    ];
+
     constructor() {
         super().loadImg('./img_pollo_locco/img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_IDLE);
+        // this.damage_sound = [
+        //     new Audio('assets/audio/character/ouch1.mp3'),
+        //     new Audio('assets/audio/character/ouch2.mp3'),
+        //     new Audio('assets/audio/character/ouch3.mp3')
+        // ];
         this.applyGravity();
         this.animate();
     }
@@ -117,7 +130,9 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.imageSequence(this.IMAGES_DEAD);
             } else if (this.isHurt()){
+                this.damageSound();
                 this.imageSequence(this.IMAGES_HURT);
+                // this.damage_sound.pause();
             } else if (this.isAboveGround()) {
                 this.imageSequence(this.IMAGES_JUMPING);
             } else {

@@ -22,7 +22,7 @@ class Boss1 extends MovableObject {
     constructor() {
         super().loadImg(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 700;
+        this.x = 1700;
         this.animate();
     }
 

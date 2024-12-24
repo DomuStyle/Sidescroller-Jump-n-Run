@@ -5,6 +5,10 @@ class MovableObject extends DrawableObject{
     acceleration = 2.5; // defines the gravity acceleraion of objects
     healthPoints = 100; // set HP of MovableObject
     lastHit = 0;
+    damage_sound = [];
+    constructor() {
+        super();
+    }
 
     applyGravity() {
         setInterval( ()=> {
@@ -23,14 +27,6 @@ class MovableObject extends DrawableObject{
         
     }
    
-    // charcter.isColiding chicken
-    // isColliding (mo) {
-    //     return  this.x + this.width > mo.x && // collison from left and right
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x + mo.width && 
-    //         this.y < mo.y + mo.height;         
-    // }
-
     isColliding (mo) {
         return this.x + this.offset.x + this.width - this.offset.width > mo.x + mo.offset.x &&
             this.y + this.offset.y + this.height - this.offset.height > mo.y + mo.offset.y &&
@@ -40,7 +36,7 @@ class MovableObject extends DrawableObject{
        
     // set enemy damage
     hit() {
-        this.healthPoints -= 5;
+        this.healthPoints -= 3;
         if (this.healthPoints < 0 ) {
             this.healthPoints = 0;  
         } 
@@ -52,9 +48,27 @@ class MovableObject extends DrawableObject{
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit; // difference between hit and lastHit in (ms)
         timePassed = timePassed / 1000; // difference in (sec)
+        
         // console.log(timePassed);
         
-        return timePassed < 5; // returns "true" if timePassed is < 5
+        return timePassed < 1; // returns "true" if timePassed is < 5
+        
+    }
+
+    damageSound() {
+        // Stop all sounds first
+        for (let i = 0; i < this.damage_sound.length; i++) {
+            if (!this.damage_sound[i].paused) {
+                this.damage_sound[i].pause();
+                this.damage_sound[i].currentTime = 0; // Reset to beginning
+            }
+        }
+    
+        let randomIndex = Math.floor(Math.random() * this.damage_sound.length);
+        let selectedAudio = this.damage_sound[randomIndex];
+        selectedAudio.playbackRate = 1.75;
+        selectedAudio.volume = 0.2;
+        selectedAudio.play();
     }
     
     isDead() {
