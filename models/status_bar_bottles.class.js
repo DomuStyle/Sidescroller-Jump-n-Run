@@ -1,6 +1,6 @@
-class StatusBarCoins extends DrawableObject {
+class StatusBarBottles extends DrawableObject {
 
-    IMAGES_COINS = [
+    IMAGES_BOTTLES = [
         './img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
         './img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
         './img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/40.png',
@@ -12,10 +12,10 @@ class StatusBarCoins extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_COINS); // preload images
+        this.loadImages(this.IMAGES_BOTTLES); // preload images
         this.setPercentage(0); // creates the IMAGES[path] for later use in resolveImageIndex
         this.x = 50;
-        this.y = 65;
+        this.y = 75;
         this.width = 200;
         this.height = 60;
      }   
@@ -25,7 +25,7 @@ class StatusBarCoins extends DrawableObject {
     // set percentage(50)
     setPercentage(percentage) {
         this.percentage = percentage;
-        let path = this.IMAGES_COINS[this.resolveImageIndex()];
+        let path = this.IMAGES_BOTTLES[this.resolveImageIndex()];
         this.img = this.imageCache[path]; 
     }
 

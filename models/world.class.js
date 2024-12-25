@@ -14,7 +14,7 @@ class World {
     camera_x = 0;
 
     statusBar = new StatusBar();
-    statusBarBottles = new StatusBarCoins();
+    statusBarBottles = new StatusBarBottles();
 
     throwableObjects = [];
     
