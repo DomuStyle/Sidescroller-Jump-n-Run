@@ -14,7 +14,7 @@ class World {
     camera_x = 0;
 
     statusBar = new StatusBar();
-    statusbarCoins = new StatusBarCoins();
+    statusBarBottles = new StatusBarCoins();
 
     throwableObjects = [];
     
@@ -74,7 +74,7 @@ class World {
         this.ctx.translate( -this.camera_x, 0); //
         // ------  space for fixed objects ----- //
         this.addToMap(this.statusBar);
-        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusBarBottles);
 
         this.ctx.translate(this.camera_x, 0); //
 
