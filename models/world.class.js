@@ -18,6 +18,7 @@ class World {
 
     throwableObjects = [];
     
+    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -122,5 +123,7 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+    
 }
 
