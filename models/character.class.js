@@ -8,6 +8,9 @@ class Character extends MovableObject {
 
     // character stats
     healthPoints = 100;
+
+    bottlesCollected = 0;
+    coinsCollected = 0;
     
     // define offset for more precise collision detection
     offset = {
@@ -129,23 +132,45 @@ class Character extends MovableObject {
         
 
         //handle character animations
-        setInterval( ()=> {
+        // setInterval( ()=> {
 
+        //     if (this.isDead()) {
+        //         this.imageSequence(this.IMAGES_DEAD);
+        //     } else if (this.isHurt()){
+        //         this.damageSound();
+        //         this.imageSequence(this.IMAGES_HURT);
+        //         // this.damage_sound.pause();
+        //     } else if (this.isAboveGround()) {
+        //         this.imageSequence(this.IMAGES_JUMPING);
+        //     } else {
+        //     //walk animation
+        //         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        //             this.imageSequence(this.IMAGES_WALKING);
+        //         }
+        // }
+        // }, 1000 / 8); 
+
+        setInterval( ()=> {
             if (this.isDead()) {
                 this.imageSequence(this.IMAGES_DEAD);
             } else if (this.isHurt()){
                 this.damageSound();
                 this.imageSequence(this.IMAGES_HURT);
-                // this.damage_sound.pause();
-            } else if (this.isAboveGround()) {
-                this.imageSequence(this.IMAGES_JUMPING);
+            }
+        }, 1000 / 8);  
+
+        setInterval( ()=> {
+            if (this.isAboveGround()) {
+                this.IMAGES_JUMPING
             } else {
             //walk animation
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.imageSequence(this.IMAGES_WALKING);
+                        this.imageSequence(this.IMAGES_WALKING);
                 }
-        }
-        }, 1000 / 8); 
-        
+            }
+        }, 1000 / 8);
     }
-}
+
+    
+        
+}       

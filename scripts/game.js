@@ -11,6 +11,48 @@ function init() {
     // console.log('My character is', world.clouds);    
 }
 
+// let intervalIds = [];
+let i = 1;
+
+// function setStopInterval(fn, time) {
+//     let id = setInterval(fn, time);
+//     intervalIds.push(id);
+
+// }
+
+// setStopInterval(sayHello, 500);
+// setStopInterval(sayGoodbye, 500);
+
+// console.log(`ÌD von interval is:`, intervalIds);
+
+
+// function stopGame() {
+//     // end interval
+//     // for (let index = 0; index < intervalIds.length; index++) {
+//     //     const id = intervalIds[index];
+//     //     clearInterval(id);
+//     // }
+    
+//     intervalIds.forEach(clearInterval);
+// }
+
+
+
+// function sayHello () {
+//     console.log(`Hello`, i);
+//     i++; 
+// }
+
+// function sayGoodbye () {
+//     console.log(`Goodbye`, i);
+//     i++; 
+// }
+
+// quick and dirty function to atop all interval´s
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
 window.addEventListener('keydown', (event) => {
     // movement keys
     if(event.key == "ArrowUp") {
