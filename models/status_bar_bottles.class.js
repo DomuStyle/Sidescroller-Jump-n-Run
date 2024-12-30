@@ -14,8 +14,8 @@ class StatusBarBottles extends DrawableObject {
         super();
         this.loadImages(this.IMAGES_BOTTLES); // preload images
         this.setPercentage(0); // creates the IMAGES[path] for later use in resolveImageIndex
-        this.x = 50;
-        this.y = 75;
+        this.x = 20;
+        this.y = 65;
         this.width = 200;
         this.height = 60;
      }   

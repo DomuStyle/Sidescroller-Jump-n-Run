@@ -3,6 +3,10 @@
     src:url('./assets/fonts/Zabars.ttf') format('truetype');
 }
 
+.d_none {
+    display: none;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -32,7 +36,7 @@ h1 {
 
 canvas {
     background-color: black;
-    position: relative;
+    /* position: relative; */
 }
 
 nav {
@@ -71,7 +75,7 @@ nav img:hover {
     /* background-image: url('./assets/img/El_pollo_frame.png'); */
     position: absolute;
     top: 225px;
-    z-index: 2;
+    z-index: 4;
     height: 660px;
     filter: drop-shadow(2px 5px 2px black);
     width: 882px;

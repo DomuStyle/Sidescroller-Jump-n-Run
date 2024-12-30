@@ -1,8 +1,13 @@
 class Character extends MovableObject {
+
+    //character dimensions
     height = 220;
     width = 100
-    y = 110;
+    y = 120;
     speed = 2.5;
+
+    // character stats
+    healthPoints = 100;
     
     // define offset for more precise collision detection
     offset = {
@@ -12,7 +17,6 @@ class Character extends MovableObject {
         height: 100,
     }
 
-    
     IMAGES_WALKING = [
             './img_pollo_locco/img/2_character_pepe/2_walk/W-21.png',
             './img_pollo_locco/img/2_character_pepe/2_walk/W-22.png',
@@ -113,7 +117,7 @@ class Character extends MovableObject {
             }
             
             // handling jump action
-            console.log(this.world.keyboard.SPACE);
+            // console.log(this.world.keyboard.SPACE);
             // console.log(isAboveGround());
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
