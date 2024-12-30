@@ -98,9 +98,13 @@ class World {
     }
     
     checkThrowObject() {
-        if (this.keyboard.THROW) {
+        if (this.keyboard.THROW && this.collectedBottles.length > 0) {
+            this.collectedBottles.pop();
             let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            console.log('Bottle thrown. Remaining:', this.collectedBottles.length);
+        } else if (this.keyboard.THROW) {
+            console.log('No bottles to throw!');
         }
     }
 

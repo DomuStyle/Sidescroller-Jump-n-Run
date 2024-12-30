@@ -57,10 +57,10 @@ class MovableObject extends DrawableObject{
 
     damageSound() {
         // Stop all sounds first
-        for (let i = 0; i < this.damage_sound.length; i++) {
-            if (!this.damage_sound[i].paused) {
-                this.damage_sound[i].pause();
-                this.damage_sound[i].currentTime = 0; // Reset to beginning
+        for (let index = 0; index < this.damage_sound.length; index++) {
+            if (!this.damage_sound[index].paused) {
+                this.damage_sound[index].pause();
+                this.damage_sound[index].currentTime = 0; // Reset to beginning
             }
         }
     

@@ -1,20 +1,6 @@
 const level1 = new Level(
     // create arrays in same order to match order of objects in level.class.js constructor (enemies, clouds, backgroundObjects)
     [
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    new SalsaBottle(),
-    ],  
-
-    [
     new Chicken(),
     new Chicken(),
     new Chicken(),
