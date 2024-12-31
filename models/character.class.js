@@ -130,13 +130,26 @@ class Character extends MovableObject {
 
         setInterval( ()=> {
             if (this.isAboveGround()) {
-                this.IMAGES_JUMPING
-            } else {
+                this.imageSequence(this.IMAGES_JUMPING);
+            } else if (this.isMoving()) {
             //walk animation
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                        this.imageSequence(this.IMAGES_WALKING);
-                }
+            this.imageSequence(this.IMAGES_WALKING);
+            } else {
+                // New condition for idle animation
+                this.showIdle();
             }
         }, 1000 / 8);
     }    
+
+     // New method to handle idle animation
+     showIdle() {
+        // This method will play the idle animation sequence
+        this.imageSequence(this.IMAGES_IDLE);
+    }
+
+    // Helper method to check if character is moving
+    isMoving() {
+        // Check if any movement key is pressed
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+    }
 }       
