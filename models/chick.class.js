@@ -4,7 +4,7 @@ class Chick extends MovableObject {
     y = 365;
 
     // New properties for spawn area
-    xStart = 200; // Start point for spawning
+    xStart = 300; // Start point for spawning
     xEnd = 1400;
     
     // offset for more precise collision detection
@@ -14,8 +14,9 @@ class Chick extends MovableObject {
         width: 15,
         height: 15,
     }
-
+    // reset image orientation
     otherDirection = true;
+
     IMAGES_WALKING = [
         './img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         './img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -37,30 +38,30 @@ class Chick extends MovableObject {
         let moveDirection = 1; // 1 for moving right, -1 for moving left
     
         setInterval(() => {
-            // Move the chicken based on current move direction
+            // move the chicken based on current move direction
             this.x += this.speed * moveDirection;
     
-            // Ensure chicken stays within defined boundaries
+            // make sure chicken stays within defined boundaries
             if (this.x <= this.xStart) {
                 moveDirection = 1;  // Move right if at the start boundary
-                this.otherDirection = false; // Ensure chicken faces left when moving right
+                this.otherDirection = true; // Ensure chicken faces left when moving left
             } else if (this.x >= this.xEnd) {
                 moveDirection = -1; // Move left if at the end boundary
-                this.otherDirection = true; // Ensure chicken faces right when moving left
+                this.otherDirection = false; // make sure chicken faces right when moving right
             }
         }, 1000 / 60); // 60 fps
     
         setInterval(() => {
-            // Change direction randomly between 1 to 2 seconds
+            // change direction randomly between 1 to 2 seconds
             if (Math.random() < 0.5) {
                 moveDirection *= -1; // Flip the direction
                 this.otherDirection = !this.otherDirection; // Flip the image
             }
         }, 1000 + Math.random() * 1000);
     
-        // Animation for walking
+        // animation for walking
         setInterval(() => {
             this.imageSequence(this.IMAGES_WALKING);
-        }, 200); // Adjust this timing as needed for smoother animation
+        }, 200);
     }
 }

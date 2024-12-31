@@ -7,6 +7,10 @@ const level1 = new Level(
     new Chick(),
     new Chick(),
     new Chick(),
+    
+    ],
+
+    [
     new Boss1()
     ],
 

@@ -7,6 +7,7 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     bottles = level1.bottles;
     coins = level1.coins;
+    endBoss = level1.endBoss;
 
     canvas;
     ctx;
@@ -153,6 +154,7 @@ class World {
         this.ctx.translate(this.camera_x, 0); //
 
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endBoss);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
 
