@@ -3,6 +3,10 @@ class Chick extends MovableObject {
     width = 60;
     y = 365;
 
+    // New properties for spawn area
+    xStart = 200; // Start point for spawning
+    xEnd = 1400;
+    
     // offset for more precise collision detection
     offset = {
         x: 5,
@@ -19,12 +23,14 @@ class Chick extends MovableObject {
 
     currentImage = 0;
     constructor() {
-        super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 1200; // spawn range starts at 200, gen. random until 700
+        // Use the new properties to set spawn position
+        this.x = this.xStart + Math.random() * (this.xEnd - this.xStart);
         this.speed = 0.15 + Math.random() * 0.25;
         this.animate();
+        this.changeDirection();
     }
 
     animate() {
@@ -38,6 +44,29 @@ class Chick extends MovableObject {
             // imageSequence handeled in parent 
             this.imageSequence(this.IMAGES_WALKING);
         }, 200);
+
+        // Add method to change direction randomly
+        this.changeDirectionInterval = setInterval(() => {
+            this.changeDirection();
+        }, (Math.random() * 1000) + 1000); // Between 1 and 2 seconds
         
+    }
+
+    // New method for changing direction
+    changeDirection() {
+        let directions = ['left', 'right'];
+        let newDirection = directions[Math.floor(Math.random() * directions.length)];
+        
+        if (newDirection === 'left') {
+            this.moveLeft = () => { this.x -= this.speed; };
+        } else {
+            this.moveLeft = () => { this.x += this.speed; }; // rename to moveRight for clarity if you want
+        }
+
+        // Clear existing interval and set a new one for direction change
+        clearInterval(this.changeDirectionInterval);
+        this.changeDirectionInterval = setInterval(() => {
+            this.changeDirection();
+        }, (Math.random() * 1000) + 1000);
     }
 }

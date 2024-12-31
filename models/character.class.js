@@ -87,11 +87,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
-        // this.damage_sound = [
-        //     new Audio('assets/audio/character/ouch1.mp3'),
-        //     new Audio('assets/audio/character/ouch2.mp3'),
-        //     new Audio('assets/audio/character/ouch3.mp3')
-        // ];
         this.applyGravity();
         this.animate();
     }
@@ -119,36 +114,12 @@ class Character extends MovableObject {
                 this.walking_sound.play();
             }
             
-            // handling jump action
-            // console.log(this.world.keyboard.SPACE);
-            // console.log(isAboveGround());
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
             
             this.world.camera_x = -this.x + 50;
         }, 1000 / 60);
-
-        
-
-        //handle character animations
-        // setInterval( ()=> {
-
-        //     if (this.isDead()) {
-        //         this.imageSequence(this.IMAGES_DEAD);
-        //     } else if (this.isHurt()){
-        //         this.damageSound();
-        //         this.imageSequence(this.IMAGES_HURT);
-        //         // this.damage_sound.pause();
-        //     } else if (this.isAboveGround()) {
-        //         this.imageSequence(this.IMAGES_JUMPING);
-        //     } else {
-        //     //walk animation
-        //         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        //             this.imageSequence(this.IMAGES_WALKING);
-        //         }
-        // }
-        // }, 1000 / 8); 
 
         setInterval( ()=> {
             if (this.isDead()) {

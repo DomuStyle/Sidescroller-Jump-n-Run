@@ -3,6 +3,9 @@ class Chicken extends MovableObject {
     width = 60;
     y = 365;
 
+    // handling img flip
+    otherDirection = false;
+    
     // New properties for spawn area
     xStart = 200; // Start point for spawning
     xEnd = 1400;
@@ -25,10 +28,6 @@ class Chicken extends MovableObject {
     constructor() {
         super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
-
-        // this.x = 200 + Math.random() * 1200; // spawn range starts at 200, gen. random until 700
-        // this.speed = 0.15 + Math.random() * 0.25;
-        // this.animate();
 
         // Use the new properties to set spawn position
         this.x = this.xStart + Math.random() * (this.xEnd - this.xStart);
