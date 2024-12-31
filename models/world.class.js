@@ -60,16 +60,6 @@ class World {
         });
     }
 
-    // checkBottleCollisions() {
-    //     this.level.bottles.forEach((bottle, index) => {
-    //         if (this.character.isColliding(bottle) ) {
-    //             this.throwableObjects.push();
-    //             // this.statusBar.setPercentage(this.character.healthPoints);
-    //             console.log('collision with Bottle, collected', this.throwableObjects);
-    //         }
-    //     });
-    // }
-
     // check bottle collision and collecting
     checkBottleCollisions() {
         // Loop through each bottle in the level
