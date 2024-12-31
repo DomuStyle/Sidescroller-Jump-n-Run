@@ -54,6 +54,19 @@ class Character extends MovableObject {
         './img_pollo_locco/img/2_character_pepe/1_idle/idle/I-10.png'
     ];
 
+    IMAGES_LONG_IDLE = [
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-11.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-12.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-13.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-14.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-15.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-16.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-17.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-18.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-19.png',
+        './img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-20.png',
+    ];
+
     IMAGES_DEAD = [
         './img_pollo_locco/img/2_character_pepe/5_dead/D-51.png',
         './img_pollo_locco/img/2_character_pepe/5_dead/D-52.png',
@@ -86,8 +99,12 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_LONG_IDLE);
         this.applyGravity();
         this.animate();
+
+        this.deathAnimationPlayed = false;
+        this.trackIdleTime();
     }
 
     animate() {  
@@ -120,13 +137,15 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval( ()=> {
-            if (this.isDead()) {
-                this.imageSequence(this.IMAGES_DEAD);
-            } else if (this.isHurt()){
+            if (this.healthPoints <= 0 && !this.deathAnimationPlayed) {
+                this.showDead();
+                // Set flag to true so the animation doesn't repeat
+                this.deathAnimationPlayed = true;
+            } else if (this.isHurt()) {
                 this.damageSound();
                 this.imageSequence(this.IMAGES_HURT);
             }
-        }, 1000 / 8);  
+        }, 1000 / 12);  
 
         setInterval( ()=> {
             if (this.isAboveGround()) {
@@ -141,15 +160,49 @@ class Character extends MovableObject {
         }, 1000 / 8);
     }    
 
-     // New method to handle idle animation
-     showIdle() {
-        // This method will play the idle animation sequence
+    //handle idle animation
+    showIdle() {
         this.imageSequence(this.IMAGES_IDLE);
     }
 
-    // Helper method to check if character is moving
+    showLongIdle() {
+        this.imageSequence(this.IMAGES_LONG_IDLE);
+    }
+
+    trackIdleTime() {
+        let lastActiveTime = Date.now();
+        //check if character hasn´t moved for 5 seconds
+        let idleThreshold = 5000;
+
+        setInterval(() => {
+            let currentTime = Date.now();
+            // Check if the character hasn't moved or changed state for 5 seconds
+            if (currentTime - lastActiveTime >= idleThreshold) {
+                this.showLongIdle();
+            } else {
+                // Reset or continue with normal idle if activity was detected
+                this.showIdle();
+            }
+            
+            // Reset activity time if character is moving or jumping
+            if (this.isMoving() || this.isAboveGround()) {
+                lastActiveTime = currentTime;
+            }
+        }, 1000 / 6);
+    }
+
+    showDead() {
+        // stop any running animations or sounds
+        this.walking_sound.pause();
+        
+        // set dead animation
+        this.imageSequence(this.IMAGES_DEAD, false);
+
+        // stop moving the character
+        this.speed = 0; 
+    }
+    //check if character is moving
     isMoving() {
-        // Check if any movement key is pressed
         return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
     }
 }       
