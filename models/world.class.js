@@ -80,6 +80,7 @@ class World {
                 this.addBottleToInventory(bottle, index);
                 // Remove the bottle from the level after it's been collected
                 this.removeBottleFromLevel(index);
+                this.statusBarBottles.setBottles(this.collectedBottles);
                 console.log('Collision with Bottle, collected');
             }
         });
@@ -102,6 +103,7 @@ class World {
             this.collectedBottles.pop();
             let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.statusBarBottles.setBottles(this.collectedBottles);
             console.log('Bottle thrown. Remaining:', this.collectedBottles.length);
         } else if (this.keyboard.THROW) {
             console.log('No bottles to throw!');
@@ -155,6 +157,7 @@ class World {
         this.coinCounter.updateCoinCount(this.collectedCoins.length);
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarBottles);
+        
         this.addToMap(this.coinCounter);
 
         this.ctx.translate(this.camera_x, 0); //

@@ -7,8 +7,9 @@ class StatusBarBottles extends DrawableObject {
         './img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
         './img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
         './img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
-        
     ];
+
+    collectedBottles = [];
 
     constructor() {
         super();
@@ -18,11 +19,14 @@ class StatusBarBottles extends DrawableObject {
         this.y = 65;
         this.width = 200;
         this.height = 60;
-     }   
+    }
+    
+    setBottles(collectedBottles) {
+        this.collectedBottles = collectedBottles;
+        let percentage = Math.min(this.collectedBottles.length * 20, 100);
+        this.setPercentage(percentage);
+    } 
 
-    percentage = 0;
-  
-    // set percentage(50)
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_BOTTLES[this.resolveImageIndex()];
@@ -32,17 +36,13 @@ class StatusBarBottles extends DrawableObject {
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
-        } else if 
-            (this.percentage > 80) {
+        } else if (this.percentage > 80) {
             return 4;
-        } else if 
-            (this.percentage > 60) {
+        } else if (this.percentage > 60) {
             return 3;
-        } else if 
-            (this.percentage > 40) {
+        } else if (this.percentage > 40) {
             return 2;
-        } else if 
-            (this.percentage > 20) {
+        } else if (this.percentage > 20) {
             return 1;
         } else {
             return 0;

@@ -19,37 +19,12 @@ class ThrowableObject extends MovableObject{
         this.animate();
     }
 
-    // throw() {
-    //     if (collectedBottles.length > 0) {
-    //         collectedBottles.pop(); // Remove a bottle from inventory
-    //         this.speedY = 30;
-    //         this.applyGravity();
-    //         setInterval(() => {
-    //             this.x += 10;
-    //         }, 1000 / 25);
-    //         console.log('Bottle thrown. Remaining:', collectedBottles.length);
-    //     } else {
-    //         console.log('No bottles to throw!');
-    //     }
-    // }
-
     throw() {
         this.speedY = 30;
         this.applyGravity();
         setInterval( ()=> {
             this.x += 10;
         }, 1000 / 25);
-    }
-
-    handleThrowBottle() {
-        if (collectedBottles.length > 0) {
-            collectedBottles.pop(); // Remove one bottle from the inventory
-            let throwable = new ThrowableObject(this.character.x, this.character.y);
-            this.addThrowableObject(throwable); // Assume this method adds it to the game world
-            console.log('Bottle thrown. Remaining:', collectedBottles.length);
-        } else {
-            console.log('No bottles to throw!');
-        }
     }
 
     animate() {
