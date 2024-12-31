@@ -70,7 +70,6 @@ class Character extends MovableObject {
         './img_pollo_locco/img/2_character_pepe/4_hurt/H-43.png'
     ];
 
-    world;
     // define & add new sounds for character here
     walking_sound = new Audio('assets/audio/character/walking-on-gravel_by_sounddesignforyou.mp3');
     
@@ -105,7 +104,6 @@ class Character extends MovableObject {
                 this.otherDirection = false;
                 this.walking_sound.play();
             }
-            // console.log(this.world.level.level_end_x);
             
             // walk left animation && limit levelStartBorder left side. &&
             if (this.world.keyboard.LEFT && this.x > 0) {
@@ -140,8 +138,5 @@ class Character extends MovableObject {
                 }
             }
         }, 1000 / 8);
-    }
-
-    
-        
+    }    
 }       

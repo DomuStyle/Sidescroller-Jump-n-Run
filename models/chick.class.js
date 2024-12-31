@@ -30,43 +30,36 @@ class Chick extends MovableObject {
         this.x = this.xStart + Math.random() * (this.xEnd - this.xStart);
         this.speed = 0.15 + Math.random() * 0.25;
         this.animate();
-        this.changeDirection();
     }
 
     animate() {
-        // call moveLeft within a defined interval
-        setInterval( ()=> {
-            this.moveLeft();
-        }, 1000 / 60);
-        
-
-        setInterval( ()=> {
-            // imageSequence handeled in parent 
+        let moveDirection = 1; // 1 for moving right, -1 for moving left
+    
+        setInterval(() => {
+            // Move the chicken based on current move direction
+            this.x += this.speed * moveDirection;
+    
+            // Ensure chicken stays within defined boundaries
+            if (this.x <= this.xStartPoint) {
+                moveDirection = 1;  // Move right if at the start boundary
+                this.otherDirection = false; // Ensure chicken faces left when moving right
+            } else if (this.x >= this.xEndPoint) {
+                moveDirection = -1; // Move left if at the end boundary
+                this.otherDirection = true; // Ensure chicken faces right when moving left
+            }
+        }, 1000 / 60); // 60 fps
+    
+        setInterval(() => {
+            // Change direction randomly between 1 to 2 seconds
+            if (Math.random() < 0.5) {
+                moveDirection *= -1; // Flip the direction
+                this.otherDirection = !this.otherDirection; // Flip the image
+            }
+        }, 1000 + Math.random() * 1000);
+    
+        // Animation for walking
+        setInterval(() => {
             this.imageSequence(this.IMAGES_WALKING);
-        }, 200);
-
-        // Add method to change direction randomly
-        this.changeDirectionInterval = setInterval(() => {
-            this.changeDirection();
-        }, (Math.random() * 1000) + 1000); // Between 1 and 2 seconds
-        
-    }
-
-    // New method for changing direction
-    changeDirection() {
-        let directions = ['left', 'right'];
-        let newDirection = directions[Math.floor(Math.random() * directions.length)];
-        
-        if (newDirection === 'left') {
-            this.moveLeft = () => { this.x -= this.speed; };
-        } else {
-            this.moveLeft = () => { this.x += this.speed; }; // rename to moveRight for clarity if you want
-        }
-
-        // Clear existing interval and set a new one for direction change
-        clearInterval(this.changeDirectionInterval);
-        this.changeDirectionInterval = setInterval(() => {
-            this.changeDirection();
-        }, (Math.random() * 1000) + 1000);
+        }, 200); // Adjust this timing as needed for smoother animation
     }
 }
