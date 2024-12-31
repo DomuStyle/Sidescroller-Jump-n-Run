@@ -5,7 +5,7 @@ class Chicken extends MovableObject {
     speed = 5.5;
 
     // handling img flip
-    otherDirection = false;
+    otherDirection = true;
 
     // New properties for spawn area
     xStart = 200; // Start point for spawning
@@ -44,12 +44,12 @@ class Chicken extends MovableObject {
             this.x += this.speed * moveDirection;
     
             // Ensure chicken stays within defined boundaries
-            if (this.x <= this.xStartPoint) {
+            if (this.x <= this.xStart) {
                 moveDirection = 1;  // Move right if at the start boundary
-                this.otherDirection = false; // Ensure chicken faces left when moving right
-            } else if (this.x >= this.xEndPoint) {
+                this.otherDirection = true; // Ensure chicken faces left when moving right
+            } else if (this.x >= this.xEnd) {
                 moveDirection = -1; // Move left if at the end boundary
-                this.otherDirection = true; // Ensure chicken faces right when moving left
+                this.otherDirection = false; // Ensure chicken faces right when moving left
             }
         }, 1000 / 60); // 60 fps
     

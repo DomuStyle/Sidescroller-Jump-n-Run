@@ -9,12 +9,13 @@ class Chick extends MovableObject {
     
     // offset for more precise collision detection
     offset = {
-        x: 5,
-        y: 5,
-        width: 10,
-        height: 10,
+        x: 10,
+        y: 10,
+        width: 15,
+        height: 15,
     }
 
+    otherDirection = true;
     IMAGES_WALKING = [
         './img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         './img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -40,10 +41,10 @@ class Chick extends MovableObject {
             this.x += this.speed * moveDirection;
     
             // Ensure chicken stays within defined boundaries
-            if (this.x <= this.xStartPoint) {
+            if (this.x <= this.xStart) {
                 moveDirection = 1;  // Move right if at the start boundary
                 this.otherDirection = false; // Ensure chicken faces left when moving right
-            } else if (this.x >= this.xEndPoint) {
+            } else if (this.x >= this.xEnd) {
                 moveDirection = -1; // Move left if at the end boundary
                 this.otherDirection = true; // Ensure chicken faces right when moving left
             }
