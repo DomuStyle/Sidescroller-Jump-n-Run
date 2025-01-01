@@ -3,7 +3,7 @@ class Chicken extends MovableObject {
     width = 60;
     y = 365;
     speed = 5.5;
-
+    healthPoints = 100;
     // handling img flip
     otherDirection = true;
 

@@ -2,8 +2,8 @@ class Chick extends MovableObject {
     height = 60;
     width = 60;
     y = 365;
-
-    // New properties for spawn area
+    healthPoints = 100;
+    // properties for spawn area
     xStart = 300; // Start point for spawning
     xEnd = 1400;
     
@@ -14,6 +14,7 @@ class Chick extends MovableObject {
         width: 15,
         height: 15,
     }
+
     // reset image orientation
     otherDirection = true;
 
@@ -28,7 +29,7 @@ class Chick extends MovableObject {
         super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        // Use the new properties to set spawn position
+        // use properties to set spawn position
         this.x = this.xStart + Math.random() * (this.xEnd - this.xStart);
         this.speed = 0.15 + Math.random() * 0.25;
         this.animate();
@@ -43,10 +44,10 @@ class Chick extends MovableObject {
     
             // make sure chicken stays within defined boundaries
             if (this.x <= this.xStart) {
-                moveDirection = 1;  // Move right if at the start boundary
-                this.otherDirection = true; // Ensure chicken faces left when moving left
+                moveDirection = 1;  // move right if at the start boundary
+                this.otherDirection = true; // make sure chicken faces left when moving left
             } else if (this.x >= this.xEnd) {
-                moveDirection = -1; // Move left if at the end boundary
+                moveDirection = -1; // move left if at the end boundary
                 this.otherDirection = false; // make sure chicken faces right when moving right
             }
         }, 1000 / 60); // 60 fps
@@ -54,8 +55,8 @@ class Chick extends MovableObject {
         setInterval(() => {
             // change direction randomly between 1 to 2 seconds
             if (Math.random() < 0.5) {
-                moveDirection *= -1; // Flip the direction
-                this.otherDirection = !this.otherDirection; // Flip the image
+                moveDirection *= -1; // flip the direction
+                this.otherDirection = !this.otherDirection; // flip the image
             }
         }, 1000 + Math.random() * 1000);
     
