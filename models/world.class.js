@@ -71,15 +71,11 @@ class World {
                     enemy.jumpHit();
                     this.character.speedY = 10;
                     console.log('collision with enemy, HP', enemy.enemyHealthpoints);
-                    if (enemy.isDead()) {
-                         // remove the dead enemy from the array
-                        this.level.enemies.splice(index, 1);
-                    }
-                
+                         // remove the dead enemy from the array        
             }
         });
     }
-
+    
     // check bottle collision and collecting
     checkBottleCollisions() {
         // loop through each bottle in the level

@@ -24,6 +24,8 @@ class Chick extends MovableObject {
         './img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
     ];
 
+    IMAGE_DEAD = './img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png';
+
     currentImage = 0;
     constructor() {
         super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
@@ -64,5 +66,18 @@ class Chick extends MovableObject {
         setInterval(() => {
             this.imageSequence(this.IMAGES_WALKING);
         }, 200);
+
+        setInterval(() => {
+            if (this.enemyHealthpoints <= 0) {
+                this.showDead();
+            }
+        }, 200);
+    }
+
+    showDead() {
+        // set dead animation
+        this.loadImg(this.IMAGE_DEAD);
+        // stop moving the character
+        this.speed = 0;
     }
 }

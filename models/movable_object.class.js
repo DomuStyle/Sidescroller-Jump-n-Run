@@ -7,6 +7,10 @@ class MovableObject extends DrawableObject{
     enemyHealthpoints = 100;
     lastHit = 0;
     damage_sound = [];
+
+    timeThreshold = 5000;
+    currentTime = Date.now();
+
     constructor() {
         super();
     }
@@ -51,7 +55,7 @@ class MovableObject extends DrawableObject{
         if (this.enemyHealthpoints < 0) {
             this.enemyHealthpoints = 0;
         } 
-        console.log(this.healthPoints);
+        // console.log(this.healthPoints);
     }
 
     isHurt() {
@@ -60,8 +64,7 @@ class MovableObject extends DrawableObject{
         
         // console.log(timePassed);
         
-        return timePassed < 1; // returns "true" if timePassed is < 5
-        
+        return timePassed < 1; // returns "true" if timePassed is < 5   
     }
 
     damageSound() {
@@ -82,6 +85,10 @@ class MovableObject extends DrawableObject{
     
     isDead() {
         return this.healthPoints == 0;   
+    }
+
+    isEnemyDead() {
+        return this.enemyHealthpoints == 0;
     }
 
     imageSequence(images) {
