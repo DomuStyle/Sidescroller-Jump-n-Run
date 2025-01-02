@@ -1,6 +1,13 @@
 class ThrowableObject extends MovableObject{
     collectedBottles;
 
+    offset = {
+        x: 35,
+        y: 10,
+        width: 50,
+        height: 20,
+    }
+    
     IMAGES_SALSA_BOTTLE = [
         './img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         './img_pollo_locco/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -28,11 +35,11 @@ class ThrowableObject extends MovableObject{
     }
 
     animate() {
-        // Animate the bottle if there are multiple images
+        // animate the bottle if there are multiple images
         setInterval(() => {
             let index = this.currentImage % this.IMAGES_SALSA_BOTTLE.length;
             this.loadImg(this.IMAGES_SALSA_BOTTLE[index]);
             this.currentImage++;
-        }, 1000 / 12); // 60 fps for animation
+        }, 1000 / 12);
     }
 }

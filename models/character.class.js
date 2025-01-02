@@ -21,12 +21,12 @@ class Character extends MovableObject {
     }
 
     IMAGES_WALKING = [
-            './img_pollo_locco/img/2_character_pepe/2_walk/W-21.png',
-            './img_pollo_locco/img/2_character_pepe/2_walk/W-22.png',
-            './img_pollo_locco/img/2_character_pepe/2_walk/W-23.png',
-            './img_pollo_locco/img/2_character_pepe/2_walk/W-24.png',
-            './img_pollo_locco/img/2_character_pepe/2_walk/W-25.png',
-            './img_pollo_locco/img/2_character_pepe/2_walk/W-26.png'
+        './img_pollo_locco/img/2_character_pepe/2_walk/W-21.png',
+        './img_pollo_locco/img/2_character_pepe/2_walk/W-22.png',
+        './img_pollo_locco/img/2_character_pepe/2_walk/W-23.png',
+        './img_pollo_locco/img/2_character_pepe/2_walk/W-24.png',
+        './img_pollo_locco/img/2_character_pepe/2_walk/W-25.png',
+        './img_pollo_locco/img/2_character_pepe/2_walk/W-26.png'
     ];
 
     IMAGES_JUMPING = [
@@ -139,7 +139,7 @@ class Character extends MovableObject {
         setInterval( ()=> {
             if (this.healthPoints <= 0 && !this.deathAnimationPlayed) {
                 this.showDead();
-                // Set flag to true so the animation doesn't repeat
+                // set flag to true so the animation doesn't repeat
                 this.deathAnimationPlayed = true;
             } else if (this.isHurt()) {
                 this.damageSound();
@@ -151,7 +151,7 @@ class Character extends MovableObject {
             if (this.isAboveGround()) {
                 this.imageSequence(this.IMAGES_JUMPING);
             } else if (this.isMoving()) {
-            //walk animation
+            //walk animationd
             this.imageSequence(this.IMAGES_WALKING);
             } else {
                 // New condition for idle animation
@@ -176,15 +176,15 @@ class Character extends MovableObject {
 
         setInterval(() => {
             let currentTime = Date.now();
-            // Check if the character hasn't moved or changed state for 5 seconds
+            // check if character hasn't moved or changed state for 5 seconds
             if (currentTime - lastActiveTime >= idleThreshold) {
                 this.showLongIdle();
             } else {
-                // Reset or continue with normal idle if activity was detected
+                // reset or continue with normal idle if activity was detected
                 this.showIdle();
             }
             
-            // Reset activity time if character is moving or jumping
+            // reset activity time if character is moving or jumping
             if (this.isMoving() || this.isAboveGround()) {
                 lastActiveTime = currentTime;
             }
@@ -201,8 +201,13 @@ class Character extends MovableObject {
         // stop moving the character
         this.speed = 0; 
     }
+
     //check if character is moving
     isMoving() {
         return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+    }
+
+    isJumping() {
+        return this.speedY > 0;
     }
 }       

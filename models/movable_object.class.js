@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject{
     speedY = 0; // defines the falling speed of objects at falling start
     acceleration = 2.5; // defines the gravity acceleraion of objects
     healthPoints = 100; // set HP of MovableObject
+    enemyHealthpoints = 100;
     lastHit = 0;
     damage_sound = [];
     constructor() {
@@ -20,7 +21,7 @@ class MovableObject extends DrawableObject{
     }
     
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // throwableObject´s should always fall
+        if (this instanceof ThrowableObject ) { // throwableObject´s should always fall
             return true;
         }
         return this.y < 205;
@@ -45,6 +46,14 @@ class MovableObject extends DrawableObject{
         } 
     }
 
+    jumpHit() {
+        this.enemyHealthpoints -= 100;
+        if (this.enemyHealthpoints < 0) {
+            this.enemyHealthpoints = 0;
+        } 
+        console.log(this.healthPoints);
+    }
+
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit; // difference between hit and lastHit in (ms)
         timePassed = timePassed / 1000; // difference in (sec)
@@ -56,11 +65,11 @@ class MovableObject extends DrawableObject{
     }
 
     damageSound() {
-        // Stop all sounds first
+        // stop all sounds first
         for (let index = 0; index < this.damage_sound.length; index++) {
             if (!this.damage_sound[index].paused) {
                 this.damage_sound[index].pause();
-                this.damage_sound[index].currentTime = 0; // Reset to beginning
+                this.damage_sound[index].currentTime = 0; // reset to beginning
             }
         }
     

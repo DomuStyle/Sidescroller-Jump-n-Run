@@ -3,7 +3,7 @@ class Chicken extends MovableObject {
     width = 60;
     y = 365;
     speed = 5.5;
-    healthPoints = 100;
+    enemyHealthpoints = 100;
     // handling img flip
     otherDirection = true;
 
@@ -22,14 +22,17 @@ class Chicken extends MovableObject {
     IMAGES_WALKING = [
         './img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         './img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        './img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
+        './img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
 
+    IMAGE_DEAD = './img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
+        
     currentImage = 0;
     constructor() {
         super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
-
+        this.loadImg(this.IMAGE_DEAD);
+        
         // use properties to set spawn position
         this.x = this.xStart + Math.random() * (this.xEnd - this.xStart);
         this.speed = 0.15 + Math.random() * 0.25;
@@ -46,10 +49,10 @@ class Chicken extends MovableObject {
             // make sure chicken stays within defined boundaries
             if (this.x <= this.xStart) {
                 moveDirection = 1;  // move right if at the start boundary
-                this.otherDirection = true; // Ensure chicken faces left when moving right
+                this.otherDirection = true; // make sure chicken faces left when moving right
             } else if (this.x >= this.xEnd) {
                 moveDirection = -1; // move left if at the end boundary
-                this.otherDirection = false; // Ensure chicken faces right when moving left
+                this.otherDirection = false; // make sure chicken faces right when moving left
             }
         }, 1000 / 60); // 60 fps
     
@@ -65,5 +68,18 @@ class Chicken extends MovableObject {
         setInterval(() => {
             this.imageSequence(this.IMAGES_WALKING);
         }, 200);
+
+        setInterval(() => {
+            if (this.enemyHealthpoints <= 0) {
+                this.showDead();
+            }
+        }, 200);
+    }
+
+    showDead() {
+        // set dead animation
+        this.loadImg(this.IMAGE_DEAD);
+        // stop moving the character
+        this.speed = 0;
     }
 }

@@ -48,7 +48,7 @@ class DrawableObject {
     }   
 
     drawBorder(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof SalsaBottle || this instanceof Coin || this instanceof Chick) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof SalsaBottle || this instanceof Coin || this instanceof Chick || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -58,7 +58,7 @@ class DrawableObject {
     }
 
     drawOffsetBorder(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Boss1 || this instanceof SalsaBottle || this instanceof Coin || this instanceof Chick) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Boss1 || this instanceof SalsaBottle || this instanceof Coin || this instanceof Chick || this instanceof Chick || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red';

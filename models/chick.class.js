@@ -2,7 +2,7 @@ class Chick extends MovableObject {
     height = 60;
     width = 60;
     y = 365;
-    healthPoints = 100;
+    enemyHealthpoints = 100;
     // properties for spawn area
     xStart = 300; // Start point for spawning
     xEnd = 1400;

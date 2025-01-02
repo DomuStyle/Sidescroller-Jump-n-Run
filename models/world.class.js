@@ -34,13 +34,16 @@ class World {
         this.checkCollisions();
         this.checkBottleCollisions();
         this.checkCoinCollisions();
+        
         this.run();
+        this.checkJumpCollision();
     }
 
     setWorld() {
         this.character.world = this; 
     }
 
+    // method for seperate handling of collision detections
     run() {
         setInterval( ()=> {
             // check collisions
@@ -48,6 +51,7 @@ class World {
             this.checkThrowObject();
             this.checkBottleCollisions();
             this.checkCoinCollisions();
+            this.checkJumpCollision();
         }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
     }
 
@@ -56,36 +60,50 @@ class World {
             if (this.character.isColliding(enemy) ) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.healthPoints);
-                // console.log('collision with Character, HP', this.character.healthPoints);
+                console.log('collision with Character, HP', this.character.healthPoints);
+            }
+        });
+    }
+
+    checkJumpCollision() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) && this.character.isJumping()) {
+                    enemy.jumpHit();
+                    this.character.speedY = 10;
+                    console.log('collision with enemy, HP', enemy.enemyHealthpoints);
+                    if (enemy.isDead()) {
+                         // remove the dead enemy from the array
+                        this.level.enemies.splice(index, 1);
+                    }
+                
             }
         });
     }
 
     // check bottle collision and collecting
     checkBottleCollisions() {
-        // Loop through each bottle in the level
+        // loop through each bottle in the level
         this.level.bottles.forEach((bottle, index) => {
-            // Check if the character is colliding with the current bottle
+            // check if character is colliding with the current bottle
             if (this.character.isColliding(bottle)) {
-                // Add the bottle to the throwableObjects array with its index for reference
+                // add bottle tothrowableObjects array with its index for reference
                 this.addBottleToInventory(bottle, index);
-                // Remove the bottle from the level after it's been collected
+                // remove bottle from the level after it's been collected
                 this.removeBottleFromLevel(index);
                 this.statusBarBottles.setBottles(this.collectedBottles);
-                console.log('Collision with Bottle, collected');
+                // console.log('Collision with Bottle, collected');
             }
         });
     }
 
     addBottleToInventory(bottle, index) {
-        // Add the bottle to the throwable objects array with its index
+        // add bottle to the throwable objects array with its index
         this.collectedBottles.push({ bottle, index });
-        // Optionally, you could update a UI or status bar here if needed
-        console.log('Bottle added to inventory. Total:', this.collectedBottles.length);
+        // console.log('Bottle added to inventory. Total:', this.collectedBottles.length);
     }
 
     removeBottleFromLevel(index) {
-        // Remove the bottle from the level's bottles array
+        // remove bottle from the level's bottles array
         this.level.bottles.splice(index, 1);
     }
     
@@ -95,23 +113,24 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.statusBarBottles.setBottles(this.collectedBottles);
-            console.log('Bottle thrown. Remaining:', this.collectedBottles.length);
+            // console.log('Bottle thrown. Remaining:', this.collectedBottles.length);
         } else if (this.keyboard.THROW) {
-            console.log('No bottles to throw!');
+            // console.log('No bottles to throw!');
         }
     }
 
     // check coin collision and collecting
     checkCoinCollisions() {
-        // Loop through each bottle in the level
+        // loop through each coin in level
         this.level.coins.forEach((coin, index) => {
-            // Check if the character is colliding with the current bottle
+
+            // check if character is colliding with current bottle
             if (this.character.isColliding(coin)) {
-                // Add the bottle to the throwableObjects array with its index for reference
+                // add bottle to the throwableObjects array with index for reference
                 this.addCoinToInventory(coin, index);
-                // Remove the bottle from the level after it's been collected
+                // remove the bottle from the level after it's been collected
                 this.removeCoinFromLevel(index);
-                console.log('Collision with Coin, collected');
+                // console.log('Collision with Coin, collected');
             }
         });
     }
@@ -120,7 +139,7 @@ class World {
         // Add the bottle to the throwable objects array with its index
         this.collectedCoins.push({coin, index });
         // Optionally, you could update a UI or status bar here if needed
-        console.log('Coin added to inventory. Total:', this.collectedCoins.length);
+        // console.log('Coin added to inventory. Total:', this.collectedCoins.length);
     }
 
     removeCoinFromLevel(index) {
@@ -199,8 +218,6 @@ class World {
     flipImageback(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
-    }
-
-    
+    }   
 }
 
