@@ -2,7 +2,7 @@ class Boss1 extends MovableObject {
     height = 300;
     width = 300;
     y = 150;
-    healthPoints = 100;
+    bossHealthpoints = 100;
     speed = 5;
 
     // offset for more precise collision detection

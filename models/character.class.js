@@ -151,10 +151,9 @@ class Character extends MovableObject {
             if (this.isAboveGround()) {
                 this.imageSequence(this.IMAGES_JUMPING);
             } else if (this.isMoving()) {
-            //walk animationd
+            //walk animation
             this.imageSequence(this.IMAGES_WALKING);
             } else {
-                // New condition for idle animation
                 this.showIdle();
             }
         }, 1000 / 8);

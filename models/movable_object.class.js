@@ -5,10 +5,12 @@ class MovableObject extends DrawableObject{
     acceleration = 2.5; // defines the gravity acceleraion of objects
     healthPoints = 100; // set HP of MovableObject
     enemyHealthpoints = 100;
+    bossHealtpoints = 100;
+
     lastHit = 0;
     damage_sound = [];
 
-    timeThreshold = 5000;
+    threshold = 5000;
     currentTime = Date.now();
 
     constructor() {
@@ -31,7 +33,7 @@ class MovableObject extends DrawableObject{
         return this.y < 205;
         
     }
-   
+
     isColliding (mo) {
         return this.x + this.offset.x + this.width - this.offset.width > mo.x + mo.offset.x &&
             this.y + this.offset.y + this.height - this.offset.height > mo.y + mo.offset.y &&
@@ -56,6 +58,16 @@ class MovableObject extends DrawableObject{
             this.enemyHealthpoints = 0;
         } 
         // console.log(this.healthPoints);
+    }
+
+    bottleHitEnemy() {
+        this.enemyHealthpoints -= 50;
+        console.log('Collision with enemy, new enemy hp', this.enemyHealthpoints);
+    }
+
+    bottleHitBoss() {
+        this.bossHealtpoints -= 20;
+        console.log('Collision with boss, new boss hp', this.bossHealtpoints);
     }
 
     isHurt() {

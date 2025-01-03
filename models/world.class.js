@@ -37,6 +37,8 @@ class World {
         
         this.run();
         this.checkJumpCollision();
+        this.checkBottleEnemyCollisions();
+        this.checkBottleBossCollisions();
     }
 
     setWorld() {
@@ -52,6 +54,8 @@ class World {
             this.checkBottleCollisions();
             this.checkCoinCollisions();
             this.checkJumpCollision();
+            this.checkBottleEnemyCollisions();
+            this.checkBottleBossCollisions();
         }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
     }
 
@@ -66,11 +70,11 @@ class World {
     }
 
     checkJumpCollision() {
-        this.level.enemies.forEach((enemy, index) => {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isJumping()) {
                     enemy.jumpHit();
-                    this.character.speedY = 10;
-                    console.log('collision with enemy, HP', enemy.enemyHealthpoints);
+                    this.character.speedY = 30;
+                    // console.log('collision with enemy, HP', enemy.enemyHealthpoints);
                          // remove the dead enemy from the array        
             }
         });
@@ -92,10 +96,44 @@ class World {
         });
     }
 
+    checkBottleBossCollisions() {
+        this.level.endBoss.forEach((boss) => {
+            this.throwableObjects.forEach((bottle) => {
+                // check if enemy is colliding with the current bottle
+            if (bottle.isColliding(boss)) {
+                // remove tbottle from level
+                this.removeBottleFromLevel(bottle);
+                console.log('New bottle count', this.level.throwableObjects);
+                // deal damage on enemy
+                boss.bottleHitBoss();
+                // update StatusBarBottles
+                
+            }}); 
+        });
+    }
+
+    checkBottleEnemyCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            this.throwableObjects.forEach((bottle) => {
+                // check if enemy is colliding with the current bottle
+            if (bottle.isColliding(enemy)) {
+                // remove tbottle from level
+                this.removeBottleFromLevel(bottle);
+                // deal damage on enemy
+                enemy.bottleHitEnemy();
+                // update StatusBarBottles
+            }}); 
+        });
+    }
+
     addBottleToInventory(bottle, index) {
         // add bottle to the throwable objects array with its index
         this.collectedBottles.push({ bottle, index });
         // console.log('Bottle added to inventory. Total:', this.collectedBottles.length);
+    }
+
+    removeEnemyFromLevel() {
+        this.level.enemies.splice(index, 1);
     }
 
     removeBottleFromLevel(index) {
@@ -106,7 +144,7 @@ class World {
     checkThrowObject() {
         if (this.keyboard.THROW && this.collectedBottles.length > 0) {
             this.collectedBottles.pop();
-            let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100);
+            let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 90);
             this.throwableObjects.push(bottle);
             this.statusBarBottles.setBottles(this.collectedBottles);
             // console.log('Bottle thrown. Remaining:', this.collectedBottles.length);
