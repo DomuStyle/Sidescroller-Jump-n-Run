@@ -122,6 +122,8 @@ class MovableObject extends DrawableObject{
 
     // set jump height
     jump(){
-        this.speedY = 30; 
+        this.speedY = 30;
+        this.jump_sound.volume = 0.025; 
+        this.jump_sound.play(); 
     }
 }

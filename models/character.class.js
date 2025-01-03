@@ -85,6 +85,8 @@ class Character extends MovableObject {
 
     // define & add new sounds for character here
     walking_sound = new Audio('assets/audio/character/walking-on-gravel_by_sounddesignforyou.mp3');
+
+    jump_sound = new Audio('assets/audio/movement-actions/jump1.mp3');
     
     damage_sound = [
         new Audio('assets/audio/character/ouch1.mp3'),

@@ -4,6 +4,7 @@ class Chicken extends MovableObject {
     y = 365;
     speed = 5.5;
     enemyHealthpoints = 100;
+
     // handling img flip
     otherDirection = true;
 
@@ -28,6 +29,10 @@ class Chicken extends MovableObject {
     IMAGE_DEAD = './img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
         
     currentImage = 0;
+
+    // define & add new sounds for character here
+    chicken_sound = new Audio('assets/audio/enemy/chicken/chickens1.mp3');
+
     constructor() {
         super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -40,6 +45,10 @@ class Chicken extends MovableObject {
     }
 
     animate() {
+        this.chicken_sound.play();
+        this.chicken_sound.volume = 0.025;
+
+
         let moveDirection = 1; // 1 for moving right, -1 for moving left
     
         setInterval(() => {
