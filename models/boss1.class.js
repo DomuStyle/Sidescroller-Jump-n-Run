@@ -3,8 +3,9 @@ class Boss1 extends MovableObject {
     width = 300;
     y = 150;
     bossHealthpoints = 100;
-    speed = 5;
+    speed = 10;
 
+    
     // offset for more precise collision detection
     offset = {
         x: 30, 
@@ -54,18 +55,25 @@ class Boss1 extends MovableObject {
         './img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
-    constructor() {
+    constructor(world) {
         super().loadImg(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 1700;
         this.animate();
     }
 
     animate() {
     setInterval( ()=> {
+        if (this.world.character.x == 1200) {
+            this.moveLeft();
+            this.imageSequence(this.IMAGES_WALKING);
+        }
         // imageSequence is handeled in parent 
-        this.moveLeft();
-        this.imageSequence(this.IMAGES_WALKING);
+        
     }, 150);
     }
 }

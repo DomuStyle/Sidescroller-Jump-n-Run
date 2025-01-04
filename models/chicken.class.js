@@ -31,7 +31,8 @@ class Chicken extends MovableObject {
     currentImage = 0;
 
     // define & add new sounds for character here
-    chicken_sound = new Audio('assets/audio/enemy/chicken/chickens1.mp3');
+    chicken_sound = new Audio('assets/audio/enviorement/chicken_ambient_sound1.mp3');
+    chicken_dying_sound = new Audio('assets/audio/enemy/chicken/chicken_dying1.mp3');
 
     constructor() {
         super().loadImg('./img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -80,9 +81,14 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             if (this.enemyHealthpoints <= 0) {
+                this.chicken_dying_sound.volume = 0.025;
+                this.chicken_dying_sound.play();
                 this.showDead();
             }
+            
         }, 200);
+        this.chicken_dying_sound.pause();
+
     }
 
     showDead() {

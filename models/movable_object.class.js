@@ -31,7 +31,6 @@ class MovableObject extends DrawableObject{
             return true;
         }
         return this.y < 205;
-        
     }
 
     isColliding (mo) {
@@ -90,7 +89,7 @@ class MovableObject extends DrawableObject{
     
         let randomIndex = Math.floor(Math.random() * this.damage_sound.length);
         let selectedAudio = this.damage_sound[randomIndex];
-        selectedAudio.playbackRate = 1.75;
+        selectedAudio.playbackRate = 1;
         selectedAudio.volume = 0.2;
         selectedAudio.play();
     }
