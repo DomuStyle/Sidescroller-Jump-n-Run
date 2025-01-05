@@ -67,7 +67,6 @@ class Boss1 extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.world = world;
         this.x = 1700;
         this.animate();
     }
@@ -75,18 +74,15 @@ class Boss1 extends MovableObject {
     animate() {
         setInterval( ()=> {
                 this.moveLeft();
-                this.imageSequence(this.IMAGES_WALKING);
-        
-            // imageSequence is handeled in parent  
-        
+                this.imageSequence(this.IMAGES_WALKING); // imageSequence is handeled in parent 
         }, 1000 / 4);
 
         setInterval(() => {
             if (this.isBossDead()) {
                 this.imageSequence(this.IMAGES_DEAD);
                 this.boss_dying_sound.volume = 0.025;
-                // this.boss_dying_sound.loop = false;
                 this.boss_dying_sound.play();
+                this.boss_dying_sound.loop = false;
                 // this.showDead();
             }
         

@@ -24,6 +24,8 @@ class World {
     collectedBottles = [];
     throwableObjects = [];
     
+    // game background sound
+    background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3');
     
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -39,6 +41,7 @@ class World {
         this.checkJumpCollision();
         this.checkBottleEnemyCollisions();
         this.checkBottleBossCollisions();
+        this.addBackgroudSound();
     }
 
     setWorld() {
@@ -57,6 +60,12 @@ class World {
             this.checkBottleEnemyCollisions();
             this.checkBottleBossCollisions();
         }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
+    }
+
+    addBackgroudSound() {
+        this.background_sound.volume = 0.25
+        this.background_sound.play();
+        this.background_sound.loop = true;
     }
 
     checkCollisions() {
