@@ -41,7 +41,7 @@ class World {
         this.checkJumpCollision();
         this.checkBottleEnemyCollisions();
         this.checkBottleBossCollisions();
-        this.addBackgroudSound();
+        this.handleBackgroudSound(); //initiate play bg_sound
     }
 
     setWorld() {
@@ -62,10 +62,27 @@ class World {
         }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
     }
 
-    addBackgroudSound() {
+    startBackgroudSound() {
         this.background_sound.volume = 0.25
         this.background_sound.play();
         this.background_sound.loop = true;
+    }
+
+    handleBackgroudSound() {
+        
+        let playPromise = this.background_sound.play();
+
+        if (playPromise !== undefined) {
+            playPromise.loop = true;
+            playPromise.volume = 0.25
+            playPromise.then(_ => {
+            // Audio playback started successfully
+        }).catch(error => {
+            // Playback failed because of user interaction policy
+            console.log("Audio play was prevented. Error: ", error);
+            // Here you might want to show a message or button for the user to start the audio manually
+        });
+        }
     }
 
     checkCollisions() {
