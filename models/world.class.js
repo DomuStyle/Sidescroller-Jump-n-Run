@@ -25,7 +25,7 @@ class World {
     throwableObjects = [];
     
     // game background sound
-    background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3');
+    // background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3');
     
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -41,7 +41,8 @@ class World {
         this.checkJumpCollision();
         this.checkBottleEnemyCollisions();
         this.checkBottleBossCollisions();
-        this.handleBackgroudSound(); //initiate play bg_sound
+        // this.startBackgroundSound();
+        // this.handleBackgroudSound(); //initiate play bg_sound
     }
 
     setWorld() {
@@ -62,28 +63,27 @@ class World {
         }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
     }
 
-    startBackgroudSound() {
-        this.background_sound.volume = 0.25
-        this.background_sound.play();
-        this.background_sound.loop = true;
-    }
+    // startBackgroundSound() {
+    //     this.background_sound.play();
+    //     this.background_sound.volume = 0.25
+    //     this.background_sound.loop = true;
+    // }
 
-    handleBackgroudSound() {
-        
-        let playPromise = this.background_sound.play();
+    // handleBackgroudSound() {
+    //     let playPromise = this.background_sound.play();
 
-        if (playPromise !== undefined) {
-            playPromise.loop = true;
-            playPromise.volume = 0.25
-            playPromise.then(_ => {
-            // Audio playback started successfully
-        }).catch(error => {
-            // Playback failed because of user interaction policy
-            console.log("Audio play was prevented. Error: ", error);
-            // Here you might want to show a message or button for the user to start the audio manually
-        });
-        }
-    }
+    //     if (playPromise !== undefined) {
+    //         playPromise.loop = true;
+    //         playPromise.volume = 0.25
+    //         playPromise.then(_ => {
+    //         // Audio playback started successfully
+    //     }).catch(error => {
+    //         // Playback failed because of user interaction policy
+    //         console.log("Audio play was prevented. Error: ", error);
+    //         // Here you might want to show a message or button for the user to start the audio manually
+    //     });
+    //     }
+    // }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {

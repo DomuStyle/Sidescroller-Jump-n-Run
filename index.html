@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png" alt="Chicken_Icon">
 </head>
-<body onload="init()">
+<body onload="">
     <h1>El pollo loco</h1>
         <div class="canvas_nav_section">
             <img src="./assets/img/El_pollo_frame.png" alt="frame_picture" class="frame">
-            <canvas id="canvas" width="720" height="480">
+            <img id="start_img" src="./img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png" alt="el_pollo_loco_start_picture">
+            <img id="start_btn" src="./assets/icons/play_btn_1280.png" onclick="init()" alt="">
+                <canvas id="canvas" width="720" height="480">
 
-            </canvas>
+                </canvas>
             <nav>
                 <div class="nav_item">
-                    <img src="./assets/icons/play_btn_1280.png" alt="">
+                    <img src="./assets/icons/play_btn_1280.png" onclick="" alt="">
                     <p class="nav_item_title">Settings</p>
                 </div>
                 <div class="nav_item">
-                    <img src="./assets/icons/play_btn_1280.png" alt="">
+                    <img src="./assets/icons/play_btn_1280.png" onclick="" alt="">
                     <p class="nav_item_title">Settings</p>
                 </div>
                 <div class="nav_item">
@@ -38,23 +40,23 @@
     </footer> 
     <!-- <img src="./img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png" alt=""> -->
 </body>
-<script src="./models/world.class.js"></script>
-<script src="./models/drawable_object.class.js"></script>
-<script src="./models/movable_object.class.js"></script>
-<script src="./models/status_bar.class.js"></script>
-<script src="./models/status_bar_bottles.class.js"></script>
-<script src="./models/coin_counter.class.js"></script>
-<script src="./models/character.class.js"></script>
-<script src="./models/chicken.class.js"></script>
-<script src="./models/chick.class.js"></script>
-<script src="./models/clouds.class.js"></script>
-<script src="./models/backgound-object.class.js"></script>
-<script src="./models/keyboard.class.js"></script>
-<script src="./models/level.class.js"></script>
-<script src="./models/throwable_object.class.js"></script>
-<script src="./models/boss1.class.js"></script>
-<script src="./models/bottle.class.js"></script>
-<script src="./models/coin.class.js"></script>
-<script src="./levels/level1.js"></script>
-<script src="./scripts/game.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/drawable_object.class.js"></script>
+    <script src="./models/movable_object.class.js"></script>
+    <script src="./models/status_bar.class.js"></script>
+    <script src="./models/status_bar_bottles.class.js"></script>
+    <script src="./models/coin_counter.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/chicken.class.js"></script>
+    <script src="./models/chick.class.js"></script>
+    <script src="./models/clouds.class.js"></script>
+    <script src="./models/backgound-object.class.js"></script>
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./models/level.class.js"></script>
+    <script src="./models/throwable_object.class.js"></script>
+    <script src="./models/boss1.class.js"></script>
+    <script src="./models/bottle.class.js"></script>
+    <script src="./models/coin.class.js"></script>
+    <script src="./levels/level1.js"></script>
+    <script src="./scripts/game.js"></script>
 </html>

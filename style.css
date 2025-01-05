@@ -80,3 +80,23 @@ nav img:hover {
     filter: drop-shadow(2px 5px 2px black);
     width: 882px;
 }
+
+#start_img {
+    z-index: 2;
+    height: 480px;
+    width: 720px;
+    position: absolute;
+}
+
+#start_btn {
+    z-index: 5;
+    height: 160px;
+    width: 160px;
+    position: absolute;
+    filter: drop-shadow(2px 5px 2px black);
+}
+
+#start_btn:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}

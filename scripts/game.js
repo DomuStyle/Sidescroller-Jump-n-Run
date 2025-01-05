@@ -2,9 +2,26 @@ let canvas;
 let world;
 let keyboard = new Keyboard;
 
+let background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3');
+
+function startBackgroundSound() {
+     background_sound.play();
+     background_sound.volume = 0.25
+     background_sound.loop = true;
+}
+
+function toggleDNone() {
+    let startImage = document.getElementById('start_img');
+    let startButton = document.getElementById('start_btn');
+    startImage.classList.toggle('d_none');
+    startButton.classList.toggle('d_none');
+}
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    toggleDNone();
+    startBackgroundSound();
     
     // console.log('My character is', world.character);
     // console.log('My character is', world.enemies);
