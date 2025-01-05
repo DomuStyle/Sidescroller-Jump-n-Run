@@ -61,11 +61,17 @@ class MovableObject extends DrawableObject{
 
     bottleHitEnemy() {
         this.enemyHealthpoints -= 50;
+        if (this.enemyHealthpoints < 0) {
+            this.enemyHealthpoints = 0;
+        }
         console.log('Collision with enemy, new enemy hp', this.enemyHealthpoints);
     }
 
     bottleHitBoss() {
         this.bossHealtpoints -= 20;
+        if (this.bossHealthpoints < 0) {
+            this.bossHealthpoints = 0;
+        }
         console.log('Collision with boss, new boss hp', this.bossHealtpoints);
     }
 
@@ -89,7 +95,7 @@ class MovableObject extends DrawableObject{
     
         let randomIndex = Math.floor(Math.random() * this.damage_sound.length);
         let selectedAudio = this.damage_sound[randomIndex];
-        selectedAudio.playbackRate = 1;
+        selectedAudio.playbackRate = 0.75;
         selectedAudio.volume = 0.2;
         selectedAudio.play();
     }
@@ -100,6 +106,10 @@ class MovableObject extends DrawableObject{
 
     isEnemyDead() {
         return this.enemyHealthpoints == 0;
+    }
+
+    isBossDead() {
+        return this.bossHealtpoints == 0;
     }
 
     imageSequence(images) {
@@ -119,10 +129,10 @@ class MovableObject extends DrawableObject{
         // console.log('moving left');
     }
 
-    // set jump height
+    
     jump(){
-        this.speedY = 30;
-        this.jump_sound.volume = 0.025; 
+        this.speedY = 30; // set jump height
+        this.jump_sound.volume = 0.025;  
         this.jump_sound.play(); 
     }
 }

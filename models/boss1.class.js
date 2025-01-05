@@ -2,8 +2,8 @@ class Boss1 extends MovableObject {
     height = 300;
     width = 300;
     y = 150;
-    bossHealthpoints = 100;
-    speed = 10;
+    // bossHealthpoints = 100;
+    speed = 4;
 
     
     // offset for more precise collision detection
@@ -55,6 +55,11 @@ class Boss1 extends MovableObject {
         './img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
+    IMAGE_DEAD = './img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G26.png';
+
+    boss_starting_sound = new Audio('assets/audio/enemy/bossChicken/endBoss_starting_sound.mp3');
+    boss_dying_sound = new Audio('assets/audio/enemy/bossChicken/endBoss_dying_sound.mp3');
+
     constructor(world) {
         super().loadImg(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -62,18 +67,36 @@ class Boss1 extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
+        this.world = world;
         this.x = 1700;
         this.animate();
     }
 
     animate() {
-    setInterval( ()=> {
-        if (this.world.character.x == 1200) {
-            this.moveLeft();
-            this.imageSequence(this.IMAGES_WALKING);
-        }
-        // imageSequence is handeled in parent 
+        setInterval( ()=> {
+                this.moveLeft();
+                this.imageSequence(this.IMAGES_WALKING);
         
-    }, 150);
+            // imageSequence is handeled in parent  
+        
+        }, 1000 / 4);
+
+        setInterval(() => {
+            if (this.isBossDead()) {
+                this.imageSequence(this.IMAGES_DEAD);
+                this.boss_dying_sound.volume = 0.025;
+                // this.boss_dying_sound.loop = false;
+                this.boss_dying_sound.play();
+                // this.showDead();
+            }
+        
+        }, 200);
+        }
+
+    showDead() {
+        // set dead animation
+        this.loadImg(this.IMAGE_DEAD);
+        // stop moving the character
+        this.speed = 0;
     }
 }
