@@ -71,6 +71,11 @@ let i = 1;
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
     toggleDNone();
+    soundOff();
+}
+
+function soundOff() {
+    background_sound.pause();
 }
 
 window.addEventListener('keydown', (event) => {
