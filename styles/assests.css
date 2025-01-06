@@ -2,7 +2,7 @@
 
 .mobile_buttons {
     position: fixed;
-    z-index: 5;
+    z-index: 6;
 }
 
 .a_button {
@@ -68,6 +68,7 @@
     left: 140px;
     height: 60px;
     opacity: 65%;
+    z-index: 6;
 }
 
 /* GAME Start Button */

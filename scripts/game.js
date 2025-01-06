@@ -6,7 +6,7 @@ let background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3'
 
 function startBackgroundSound() {
      background_sound.play();
-     background_sound.volume = 0.05;
+     background_sound.volume = 0.025;
      background_sound.loop = true;
 }
 
@@ -72,6 +72,11 @@ function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
     toggleDNone();
     soundOff();
+}
+
+function restartGame() {
+    clearAllIntervals();
+    init();
 }
 
 function soundOff() {

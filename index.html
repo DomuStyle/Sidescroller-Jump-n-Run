@@ -17,14 +17,14 @@
             <canvas id="canvas" width="720" height="480">
             </canvas>
             <!-- <div class="mobile_buttons"> -->
-            <img class="a_button d_none" src="./assets/icons/buttonA.png" alt="a_button_image">
-            <img class="b_button d_none" src="./assets/icons/buttonB.png" alt="b_button_image">
-            <img class="left_button d_none" src="./assets/icons/arrowLeft.png" alt="left_button_image">
-            <img class="right_button d_none" src="./assets/icons/arrowRight.png" alt="right_button_image">
-            <img class="soundOn_button d_none" src="./assets/icons/musicOn.png" alt="soundOn_button_image">
-            <img class="soundOff_button d_none" src="./assets/icons/musicOff.png" alt="soundOff_button_image">
-            <img class="controls_button d_none" src="./assets/icons/gamepad.png" alt="controls_button_image">
-            <img class="restart_button d_none" src="./assets/icons/return.png" alt="restart_button_image">
+            <img class="a_button zIndex d_none" src="./assets/icons/buttonA.png" alt="a_button_image">
+            <img class="b_button zIndex d_none" src="./assets/icons/buttonB.png" alt="b_button_image">
+            <img class="left_button zIndex d_none" src="./assets/icons/arrowLeft.png" alt="left_button_image">
+            <img class="right_button zIndex d_none" src="./assets/icons/arrowRight.png" alt="right_button_image">
+            <img class="soundOn_button zIndex d_none" src="./assets/icons/musicOn.png" alt="soundOn_button_image">
+            <img class="soundOff_button zIndex d_none" src="./assets/icons/musicOff.png" onclick="soundOff()" alt="soundOff_button_image">
+            <img class="controls_button zIndex d_none" src="./assets/icons/gamepad.png" alt="controls_button_image">
+            <img class="restart_button zIndex d_none" src="./assets/icons/return.png" onclick="restartGame()" alt="restart_button_image">
             <!-- </div> -->
             <nav>
                 <div class="nav_item">
@@ -32,16 +32,16 @@
                     <p class="nav_item_title">Controls</p>
                 </div>
                 <div class="nav_item">
-                    <img src="./assets/icons/musicOn.png" onclick="init()" alt="">
+                    <img src="./assets/icons/musicOn.png" onclick="init()" alt="sound_on_icon">
                     <p class="nav_item_title">Sound On</p>
                 </div>
                 <div class="nav_item">
-                    <img src="./assets/icons/musicOff.png" alt="">
+                    <img src="./assets/icons/musicOff.png" onclick="soundOff()" alt="sound_off_icon">
                     <p class="nav_item_title">Sound Off</p>
                 </div>
                 <div class="nav_item">
-                    <img src="./assets/icons/wrench.png" alt="">
-                    <p class="nav_item_title">Settings</p>
+                    <img src="./assets/icons/return.png" onclick="restartGame()" alt="restart_game_icon">
+                    <p class="nav_item_title">Restart</p>
                 </div>   
             </nav>
         </div>
