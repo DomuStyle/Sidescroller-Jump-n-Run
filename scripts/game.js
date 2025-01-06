@@ -3,11 +3,15 @@ let world;
 let keyboard = new Keyboard;
 
 let background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3');
+let chicken_sound = new Audio('assets/audio/enviorement/chicken_ambient_sound1.mp3');
 
 function startBackgroundSound() {
      background_sound.play();
      background_sound.volume = 0.025;
      background_sound.loop = true;
+     chicken_sound.play();
+     chicken_sound.volume = 0.05;
+     chicken_sound.loop = true;
 }
 
 function toggleDNone() {
@@ -81,6 +85,11 @@ function restartGame() {
 
 function soundOff() {
     background_sound.pause();
+    chicken_sound.pause();
+}
+
+function soundOn() {
+    background_sound.play();
 }
 
 window.addEventListener('keydown', (event) => {

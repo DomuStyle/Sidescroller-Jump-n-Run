@@ -24,7 +24,9 @@ class World {
     collectedBottles = [];
     throwableObjects = [];
     
-    // game background sound
+    // game sounds
+
+    cracking_bottle_sound = new Audio('./assets/audio/throwables/bottles/cracking-smashing-bottle1.mp3')
     // background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3');
     
     constructor(canvas, keyboard) {
@@ -105,7 +107,12 @@ class World {
             }
         });
     }
-    
+    playBottleCrackSound() {
+        this.cracking_bottle_sound.volume = 1.5;
+        this.cracking_bottle_sound.play
+        this.cracking_bottle_sound.loop = false;
+    }
+
     // check bottle collision and collecting
     checkBottleCollisions() {
         // loop through each bottle in the level
@@ -132,6 +139,7 @@ class World {
                 console.log('New bottle count', this.level.throwableObjects);
                 // deal damage on enemy
                 boss.bottleHitBoss();
+                this.playBottleCrackSound();
                 // update StatusBarBottles
                 
             }}); 
@@ -147,7 +155,7 @@ class World {
                 this.removeBottleFromLevel(bottle);
                 // deal damage on enemy
                 enemy.bottleHitEnemy();
-                // update StatusBarBottles
+                this.playBottleCrackSound();
             } else if (enemy.enemyHealthpoints == 0) {
                 this.removeEnemyFromLevel();
             }}); 
@@ -169,6 +177,10 @@ class World {
         this.level.bottles.splice(index, 1);
     }
     
+    removeBottleFromHit(index) {
+        this.throwableObjects.splice(index, 1);
+    }
+
     checkThrowObject() {
         if (this.keyboard.THROW && this.collectedBottles.length > 0) {
             this.collectedBottles.pop();
