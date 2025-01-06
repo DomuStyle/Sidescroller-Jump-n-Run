@@ -81,13 +81,17 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             if (this.enemyHealthpoints <= 0) {
-                this.chicken_dying_sound.volume = 0.025;  
-                this.chicken_dying_sound.play();
-                this.chicken_dying_sound.loop = false;
+                this.playChickenDeadSound();
                 this.showDead();
             }
             
         }, 200);
+    }
+
+    playChickenDeadSound() {
+        this.chicken_dying_sound.volume = 0.025; 
+        this.chicken_dying_sound.play();  
+        this.chicken_dying_sound.loop = false;  
     }
 
     showDead() {
@@ -95,6 +99,5 @@ class Chicken extends MovableObject {
         this.loadImg(this.IMAGE_DEAD);
         // stop moving the character
         this.speed = 0;
-        this.enemies.splice(index, 1);
     }
 }

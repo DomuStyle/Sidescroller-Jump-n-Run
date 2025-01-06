@@ -99,7 +99,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isJumping()) {
                     enemy.jumpHit();
-                    this.character.speedY = 30;
+                    // this.character.speedY = 30;
                     // console.log('collision with enemy, HP', enemy.enemyHealthpoints);
                          // remove the dead enemy from the array        
             }
@@ -148,17 +148,19 @@ class World {
                 // deal damage on enemy
                 enemy.bottleHitEnemy();
                 // update StatusBarBottles
+            } else if (enemy.enemyHealthpoints == 0) {
+                this.removeEnemyFromLevel();
             }}); 
         });
     }
 
     addBottleToInventory(bottle, index) {
         // add bottle to the throwable objects array with its index
-        this.collectedBottles.push({ bottle, index });
+        this.collectedBottles.push({bottle, index });
         // console.log('Bottle added to inventory. Total:', this.collectedBottles.length);
     }
 
-    removeEnemyFromLevel() {
+    removeEnemyFromLevel(index) {
         this.level.enemies.splice(index, 1);
     }
 

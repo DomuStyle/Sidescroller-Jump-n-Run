@@ -6,7 +6,7 @@ let background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3'
 
 function startBackgroundSound() {
      background_sound.play();
-     background_sound.volume = 0.15;
+     background_sound.volume = 0.05;
      background_sound.loop = true;
 }
 
@@ -16,12 +16,6 @@ function toggleDNone() {
     startImage.classList.toggle('d_none');
     startButton.classList.toggle('d_none');
 }
-
-// function startgame() {
-//     toggleDNone();
-//     init();
-//     initlevel();
-// }
 
 function init() {
     
