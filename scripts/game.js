@@ -6,7 +6,7 @@ let background_sound = new Audio('assets/audio/enviorement/saloonpianoloop2.mp3'
 
 function startBackgroundSound() {
      background_sound.play();
-     background_sound.volume = 0.25
+     background_sound.volume = 0.15;
      background_sound.loop = true;
 }
 
@@ -17,7 +17,15 @@ function toggleDNone() {
     startButton.classList.toggle('d_none');
 }
 
+// function startgame() {
+//     toggleDNone();
+//     init();
+//     initlevel();
+// }
+
 function init() {
+    
+    initlevel1();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     toggleDNone();
@@ -68,6 +76,7 @@ let i = 1;
 // quick and dirty function to atop all interval´s
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    toggleDNone();
 }
 
 window.addEventListener('keydown', (event) => {

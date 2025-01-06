@@ -1,4 +1,6 @@
-const level1 = new Level(
+let level1
+function initlevel1() {
+level1 = new Level(
     // create arrays in same order to match order of objects in level.class.js constructor (enemies, clouds, backgroundObjects)
     [
     new Chicken(),
@@ -68,3 +70,4 @@ const level1 = new Level(
     new Coin()
     ]
 );
+}
