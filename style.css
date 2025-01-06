@@ -41,6 +41,7 @@ h1 {
 
 canvas {
     background-color: black;
+    display: block;
     /* position: relative; */
 }
 

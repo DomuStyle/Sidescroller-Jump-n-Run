@@ -43,8 +43,6 @@ class World {
         this.checkJumpCollision();
         this.checkBottleEnemyCollisions();
         this.checkBottleBossCollisions();
-        // this.startBackgroundSound();
-        // this.handleBackgroudSound(); //initiate play bg_sound
     }
 
     setWorld() {
@@ -64,28 +62,6 @@ class World {
             this.checkBottleBossCollisions();
         }, 50); // (1 Second) = 1000 / 5 = (frames per Second)
     }
-
-    // startBackgroundSound() {
-    //     this.background_sound.play();
-    //     this.background_sound.volume = 0.25
-    //     this.background_sound.loop = true;
-    // }
-
-    // handleBackgroudSound() {
-    //     let playPromise = this.background_sound.play();
-
-    //     if (playPromise !== undefined) {
-    //         playPromise.loop = true;
-    //         playPromise.volume = 0.25
-    //         playPromise.then(_ => {
-    //         // Audio playback started successfully
-    //     }).catch(error => {
-    //         // Playback failed because of user interaction policy
-    //         console.log("Audio play was prevented. Error: ", error);
-    //         // Here you might want to show a message or button for the user to start the audio manually
-    //     });
-    //     }
-    // }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -107,9 +83,10 @@ class World {
             }
         });
     }
+
     playBottleCrackSound() {
         this.cracking_bottle_sound.volume = 1.5;
-        this.cracking_bottle_sound.play
+        this.cracking_bottle_sound.play();
         this.cracking_bottle_sound.loop = false;
     }
 
@@ -139,7 +116,7 @@ class World {
                 console.log('New bottle count', this.level.throwableObjects);
                 // deal damage on enemy
                 boss.bottleHitBoss();
-                this.playBottleCrackSound();
+                // this.playBottleCrackSound();
                 // update StatusBarBottles
                 
             }}); 
@@ -155,7 +132,7 @@ class World {
                 this.removeBottleFromLevel(bottle);
                 // deal damage on enemy
                 enemy.bottleHitEnemy();
-                this.playBottleCrackSound();
+                // this.playBottleCrackSound();
             } else if (enemy.enemyHealthpoints == 0) {
                 this.removeEnemyFromLevel();
             }}); 

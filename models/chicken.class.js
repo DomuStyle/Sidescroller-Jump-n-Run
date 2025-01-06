@@ -31,7 +31,6 @@ class Chicken extends MovableObject {
     currentImage = 0;
 
     // define & add new sounds for character here
-    chicken_sound = new Audio('assets/audio/enviorement/chicken_ambient_sound1.mp3');
     chicken_dying_sound = new Audio('assets/audio/enemy/chicken/chicken_dying1.mp3');
 
     constructor() {
@@ -46,10 +45,6 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        // this.chicken_sound.play();
-        this.chicken_sound.volume = 0.025;
-
-
         let moveDirection = 1; // 1 for moving right, -1 for moving left
     
         setInterval(() => {
@@ -81,7 +76,6 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             if (this.enemyHealthpoints <= 0) {
-                this.playChickenDeadSound();
                 this.showDead();
             }
             
