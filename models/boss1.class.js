@@ -4,8 +4,10 @@ class Boss1 extends MovableObject {
     y = 150;
     // bossHealthpoints = 100;
     speed = 4;
-
+    bossHealthpoints = 100;
     
+    bossTrigger = false;
+
     // offset for more precise collision detection
     offset = {
         x: 30, 
@@ -73,8 +75,10 @@ class Boss1 extends MovableObject {
 
     animate() {
         setInterval( ()=> {
+                if (this.bossTrigger = true) {
                 this.moveLeft();
-                this.imageSequence(this.IMAGES_WALKING); // imageSequence is handeled in parent 
+                this.imageSequence(this.IMAGES_WALKING); // imageSequence is handeled in drawableObject
+            }
         }, 1000 / 4);
 
         setInterval(() => {

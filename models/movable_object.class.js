@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject{
     acceleration = 2.5; // defines the gravity acceleraion of objects
     healthPoints = 100; // set HP of MovableObject
     enemyHealthpoints = 100;
-    bossHealtpoints = 100;
+    bossHealthpoints = 100;
 
     lastHit = 0;
     damage_sound = [];
@@ -68,7 +68,7 @@ class MovableObject extends DrawableObject{
     }
 
     bottleHitBoss() {
-        this.bossHealtpoints -= 20;
+        this.bossHealthpoints -= 20;
         if (this.bossHealthpoints < 0) {
             this.bossHealthpoints = 0;
         }

@@ -24,6 +24,9 @@ class World {
     collectedBottles = [];
     throwableObjects = [];
     
+    // handle endBoss spawning
+    bossTrigger = false;
+
     // game sounds
 
     cracking_bottle_sound = new Audio('./assets/audio/throwables/bottles/cracking-smashing-bottle1.mp3')
@@ -85,7 +88,7 @@ class World {
     }
 
     playBottleCrackSound() {
-        this.cracking_bottle_sound.volume = 1.5;
+        this.cracking_bottle_sound.volume = 5.5;
         this.cracking_bottle_sound.play();
         this.cracking_bottle_sound.loop = false;
     }
@@ -133,8 +136,6 @@ class World {
                 // deal damage on enemy
                 enemy.bottleHitEnemy();
                 // this.playBottleCrackSound();
-            } else if (enemy.enemyHealthpoints == 0) {
-                this.removeEnemyFromLevel();
             }}); 
         });
     }
@@ -196,6 +197,12 @@ class World {
     removeCoinFromLevel(index) {
         // Remove the bottle from the level's bottles array
         this.level.coins.splice(index, 1);
+    }
+
+    toggleEndBoss() {
+        if (this.character.x = 1350) {
+            this.bossTrigger = true;
+        }
     }
 
     // defines how the content gets drawn onto the canvas. ! respect right order !
